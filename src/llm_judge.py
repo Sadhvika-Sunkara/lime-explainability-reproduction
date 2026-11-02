@@ -54,7 +54,11 @@ def main():
     if a.dry_run:
         print(SYSTEM, '\n---\n', user_prompt(items.iloc[0]))
         return
-    from openai import OpenAI
+    key = os.environ.get('OPENAI_API_KEY', '')
+    if not key.startswith('sk-') or key.strip() in ('sk-...', 'sk-'):
+        raise SystemExit('Set OPENAI_API_KEY to your real key first (it starts with "sk-" and is ~50+ characters; '
+                         'create one at https://platform.openai.com/api-keys).')
+    from openai import AuthenticationError, NotFoundError, OpenAI
     client = OpenAI()
     out_path = os.path.join(ROOT, 'llm_judgements.csv')
     rows = []
@@ -71,6 +75,10 @@ def main():
                     trust = int(j['trust']); assert 1 <= trust <= 5
                     sense = 'Yes' if str(j['makes_sense']).strip().lower().startswith('y') else 'No'
                     break
+                except AuthenticationError:
+                    raise SystemExit('OpenAI rejected the API key (401). Check OPENAI_API_KEY.')
+                except NotFoundError:
+                    raise SystemExit(f'Model "{a.model}" is not available to this key; try e.g. --model gpt-4.1-mini')
                 except Exception as e:                         # rate limits / malformed JSON
                     print(f'  retry {row.item_id} ({e})'); time.sleep(2 * (attempt + 1))
             else:

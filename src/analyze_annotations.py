@@ -22,7 +22,7 @@ import sys
 
 import numpy as np
 import pandas as pd
-from scipy.stats import spearmanr
+from scipy.stats import mannwhitneyu, spearmanr
 from sklearn.metrics import cohen_kappa_score, roc_auc_score
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -134,6 +134,19 @@ def main(resp_dir=os.path.join(ANN, 'responses'), out_prefix=''):
                                         'incorrect': float(np.nanmean(h_mean[correct == 0]))}
     out['sense_rate_by_correctness_human'] = {'correct': float(np.nanmean(S[:, correct == 1])),
                                               'incorrect': float(np.nanmean(S[:, correct == 0]))}
+    conf = np.maximum(key.p_disease.values, 1 - key.p_disease.values)
+    out['auc_model_confidence_detects_correct'] = auc(conf)
+    out['mannwhitney_p_trust_correct_vs_incorrect'] = float(mannwhitneyu(h_mean[correct == 1], h_mean[correct == 0]).pvalue)
+    rng = np.random.RandomState(1); boots = []
+    for _ in range(2000):
+        i = rng.randint(0, len(correct), len(correct))
+        if len(set(correct[i])) == 2:
+            boots.append(roc_auc_score(correct[i], h_mean[i]))
+    out['auc_human_mean_ci95'] = [float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))]
+    # does trust carry information beyond the confidence shown on screen?
+    resid = h_mean - np.polyval(np.polyfit(conf, h_mean, 1), conf)
+    out['auc_human_trust_residual_after_confidence'] = auc(resid)
+    out['p_human_trust_residual'] = float(mannwhitneyu(resid[correct == 1], resid[correct == 0]).pvalue)
     out['spearman_human_trust_vs_lime_r2'] = float(spearmanr(h_mean, key.lime_local_r2, nan_policy='omit')[0])
     out['spearman_human_trust_vs_confidence'] = float(spearmanr(h_mean, np.maximum(key.p_disease, 1 - key.p_disease), nan_policy='omit')[0])
     if 'trust_llm' in merged:
@@ -142,6 +155,9 @@ def main(resp_dir=os.path.join(ANN, 'responses'), out_prefix=''):
         out['mean_trust_by_correctness_llm'] = {'correct': float(lt[correct == 1].mean()),
                                                 'incorrect': float(lt[correct == 0].mean())}
         out['spearman_llm_trust_vs_lime_r2'] = float(spearmanr(lt, key.lime_local_r2)[0])
+        out['spearman_llm_trust_vs_confidence'] = float(spearmanr(lt, conf)[0])
+        lres = lt - np.polyval(np.polyfit(conf, lt, 1), conf)
+        out['auc_llm_trust_residual_after_confidence'] = auc(lres)
     out.pop('krippendorff_alpha_trust_interval_check')
     os.makedirs(RES, exist_ok=True)
     merged.to_csv(os.path.join(RES, out_prefix + 'annotations_merged.csv'), index=False)
@@ -172,6 +188,14 @@ MACROS = {  # macro name -> (key path in analysis json, format)
     'MeanTrustHuman': (('mean_trust_human',), '{:.2f}'),
     'MeanTrustLLM': (('mean_trust_llm',), '{:.2f}'),
     'LLMModel': (('llm_model',), '{}'),
+    'AUCConf': (('auc_model_confidence_detects_correct',), '{:.2f}'),
+    'AUCResid': (('auc_human_trust_residual_after_confidence',), '{:.2f}'),
+    'PResid': (('p_human_trust_residual',), '{:.2f}'),
+    'PTrustMW': (('mannwhitney_p_trust_correct_vs_incorrect',), '{:.3f}'),
+    'AUCLo': (('auc_human_mean_ci95', 0), '{:.2f}'),
+    'AUCHi': (('auc_human_mean_ci95', 1), '{:.2f}'),
+    'RhoLLMConf': (('spearman_llm_trust_vs_confidence',), '{:.2f}'),
+    'AUCLLMResid': (('auc_llm_trust_residual_after_confidence',), '{:.2f}'),
 }
 
 
