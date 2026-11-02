@@ -1,0 +1,181 @@
+item_id,repeat,model,trust,makes_sense,reason
+H01,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes that are known risk factors for heart disease.
+H02,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in predicting no disease.
+H03,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H04,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H05,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H06,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H07,1,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, but the model's low confidence makes the prediction uncertain."
+H08,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence.
+H09,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H10,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of NO DISEASE.
+H11,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H12,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H13,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H14,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights key factors that support the prediction of NO DISEASE.
+H15,1,gpt-4o-mini,4,Yes,The explanation aligns with known risk factors for heart disease and the patient's clinical attributes.
+H16,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H17,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H18,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H19,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H20,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H21,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H22,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H23,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H24,1,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, highlighting both supporting and opposing factors for the disease prediction."
+H25,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of NO DISEASE.
+H26,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's attributes and the model's prediction of disease.
+H27,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H28,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H29,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H30,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H31,1,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H32,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H33,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H34,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H35,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H36,1,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction.
+H37,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H38,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H39,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H40,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence in the prediction.
+H41,1,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, highlighting factors that both support and contradict the prediction."
+H42,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H43,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights significant factors contributing to the prediction.
+H44,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H45,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H46,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's attributes and the model's prediction.
+H47,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's strong confidence in the prediction.
+H48,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H49,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H50,1,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H51,1,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, but the model's low confidence makes the prediction uncertain."
+H52,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H53,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H54,1,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, though the conflicting factors create uncertainty."
+H55,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H56,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H57,1,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H58,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H59,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H60,1,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's strong confidence in the prediction.
+H01,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes that are known risk factors for heart disease.
+H02,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in predicting no disease.
+H03,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H04,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H05,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H06,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H07,2,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, but the model's low confidence makes the prediction uncertain."
+H08,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence.
+H09,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H10,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of NO DISEASE.
+H11,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H12,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H13,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H14,2,gpt-4o-mini,4,Yes,"The explanation aligns with the patient's record, highlighting key factors that support the prediction of no disease."
+H15,2,gpt-4o-mini,4,Yes,The explanation aligns with known risk factors for heart disease and the patient's clinical attributes.
+H16,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's attributes and the model's prediction of disease.
+H17,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H18,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H19,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights key factors contributing to the prediction.
+H20,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction.
+H21,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H22,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H23,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H24,2,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, but the conflicting factors create uncertainty."
+H25,2,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction of NO DISEASE.
+H26,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's attributes and the model's prediction of disease.
+H27,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H28,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H29,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in predicting no disease.
+H30,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H31,2,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H32,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H33,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H34,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H35,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H36,2,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction.
+H37,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H38,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H39,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H40,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence in the prediction.
+H41,2,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, though the confidence is moderate."
+H42,2,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction.
+H43,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H44,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H45,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H46,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H47,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H48,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H49,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H50,2,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H51,2,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, highlighting both supportive and contradictory factors."
+H52,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H53,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H54,2,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, though the conflicting factors create uncertainty."
+H55,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H56,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H57,2,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H58,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H59,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H60,2,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H01,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H02,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in predicting no disease.
+H03,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H04,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H05,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H06,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H07,3,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record, but the model's low confidence makes the prediction uncertain."
+H08,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence.
+H09,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H10,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of NO DISEASE.
+H11,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H12,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H13,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H14,3,gpt-4o-mini,4,Yes,"The explanation aligns with the patient's record, highlighting key factors that support the prediction of no disease."
+H15,3,gpt-4o-mini,4,Yes,The explanation aligns with known risk factors for heart disease and the patient's clinical attributes.
+H16,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's attributes and the model's prediction of disease.
+H17,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H18,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H19,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights key factors contributing to the prediction.
+H20,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H21,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H22,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H23,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H24,3,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's attributes and the model's prediction, but the conflicting factors create uncertainty."
+H25,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H26,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's attributes and the model's prediction.
+H27,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H28,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H29,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H30,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights key factors that support the model's prediction.
+H31,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's prediction of no disease.
+H32,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H33,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction.
+H34,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H35,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H36,3,gpt-4o-mini,4,Yes,The explanation aligns well with the patient's record and the model's prediction.
+H37,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H38,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's high-risk factors and conflicting indicators.
+H39,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H40,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's high-risk attributes and the model's strong confidence in the prediction.
+H41,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors influencing the prediction.
+H42,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H43,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights significant factors contributing to the prediction.
+H44,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H45,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction.
+H46,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's clinical attributes and the model's prediction.
+H47,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's strong confidence in the prediction.
+H48,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H49,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H50,3,gpt-4o-mini,3,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H51,3,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, but the confidence is relatively low."
+H52,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of NO DISEASE.
+H53,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights relevant factors contributing to the prediction.
+H54,3,gpt-4o-mini,3,Yes,"The explanation aligns with the patient's record and the model's prediction, though the conflicting factors create uncertainty."
+H55,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and highlights key factors that support the prediction of NO DISEASE.
+H56,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and highlights significant risk factors for heart disease.
+H57,3,gpt-4o-mini,5,Yes,The explanation aligns well with the patient's record and the model's high confidence in the prediction.
+H58,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.
+H59,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's record and the model's prediction of no disease.
+H60,3,gpt-4o-mini,4,Yes,The explanation aligns with the patient's high-risk factors and the model's prediction.

@@ -1,0 +1,71 @@
+{
+  "annotators": [
+    "A",
+    "B",
+    "C"
+  ],
+  "n_items": 60,
+  "completion": {
+    "A": 1.0,
+    "B": 1.0,
+    "C": 1.0
+  },
+  "krippendorff_alpha_trust_ordinal": 0.6575993501818017,
+  "krippendorff_alpha_sense_nominal": 0.47492625368731567,
+  "pairwise_qwk_trust": {
+    "A-B": 0.7864184008762323,
+    "A-C": 0.6172248803827751,
+    "B-C": 0.5685279187817258
+  },
+  "pairwise_kappa_sense": {
+    "A-B": 0.4923891462607545,
+    "A-C": 0.4851258581235698,
+    "B-C": 0.4440518256772674
+  },
+  "llm_model": "gpt-4o-mini",
+  "llm_repeats": 3,
+  "llm_self_consistency_alpha_trust": 0.972744575561477,
+  "llm_vs_human_median_qwk": 0.5858585858585859,
+  "llm_vs_each_human_qwk": {
+    "A": 0.56,
+    "B": 0.5957446808510638,
+    "C": 0.37037037037037035
+  },
+  "llm_vs_human_majority_kappa_sense": 0.0,
+  "llm_vs_human_mean_spearman": 0.7812631694393057,
+  "krippendorff_alpha_trust_humans_plus_llm": 0.58493482175875,
+  "mean_trust_llm": 4.0,
+  "mean_trust_human": 3.4,
+  "auc_trust_detects_correct": {
+    "A": 0.760625,
+    "B": 0.6925,
+    "C": 0.659375,
+    "human_mean": 0.7275,
+    "llm": 0.65
+  },
+  "mean_trust_by_correctness": {
+    "correct": 3.6583333333333337,
+    "incorrect": 2.8833333333333333
+  },
+  "sense_rate_by_correctness_human": {
+    "correct": 0.7083333333333334,
+    "incorrect": 0.4745762711864407
+  },
+  "auc_model_confidence_detects_correct": 0.7499999999999999,
+  "mannwhitney_p_trust_correct_vs_incorrect": 0.004093016361537312,
+  "auc_human_mean_ci95": [
+    0.5956136363636362,
+    0.8432654151404151
+  ],
+  "auc_human_trust_residual_after_confidence": 0.51125,
+  "p_human_trust_residual": 0.8939620690476555,
+  "spearman_human_trust_vs_lime_r2": 0.2512635910488451,
+  "spearman_human_trust_vs_confidence": 0.8986476793959001,
+  "mean_trust_by_correctness_llm": {
+    "correct": 4.125,
+    "incorrect": 3.75
+  },
+  "spearman_llm_trust_vs_lime_r2": 0.15673127925354507,
+  "spearman_llm_trust_vs_confidence": 0.8589906439071843,
+  "auc_llm_trust_residual_after_confidence": 0.4175
+}

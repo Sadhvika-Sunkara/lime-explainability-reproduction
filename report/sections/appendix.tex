@@ -1,0 +1,31 @@
+\begin{table}[h]
+\centering\small
+\begin{tabular}{p{0.32\columnwidth}p{0.58\columnwidth}}
+\toprule
+Setting & Value \\
+\midrule
+Text features & binary bag of words, lower-cased, scikit-learn tokeniser, no stop-word removal \\
+Split & 1,000 pos.\ + 1,000 neg.; per class shuffled (seed 1), 80/20 $\rightarrow$ 1,600 / 400 \\
+Sparse LR (\S5.2) & L1, liblinear; $C$ lowered from 0.1 in steps of 0.01 until every training doc uses ${\le}10$ features ($C{=}0.03$ for all three text sets) \\
+DT (\S5.2) & unpruned CART, seed 1 (text); depth 5 (Heart) \\
+\S5.3 classifiers & LR (L2, default $C$); $k$NN ($k{=}5$); RF (1,000 trees, depth 5); SVM (RBF, $C{=}10$, $\gamma{=}0.001$, Platt) \\
+LIME (text) & $N{=}15{,}000$; kernel $\sqrt{\exp(-d^2/25^2)}$, $d = 100\times$cosine; K-LASSO; $K{=}10$ \\
+LIME (Heart) & \texttt{lime} 0.2.0.1 tabular, quartile discretisation, $N{=}15{,}000$, $K{=}5$ \\
+Parzen $\sigma$ & paper values for Books/DVDs; for IMDB/Heart chosen by leave-one-out disagreement with 5-fold CV predictions \\
+Trust rounds & 100; 25\% of features untrustworthy (Heart: 3 of 13) \\
+Heart removal & feature $\rightarrow$ training median (continuous) / mode (categorical) \\
+Heart evaluation & stratified 5-fold cross-fitting, all 297 patients explained once \\
+\bottomrule
+\end{tabular}
+\caption{Hyperparameters. Everything not listed follows \citet{limeexperiments}.}
+\label{tab:hyper}
+\end{table}
+
+\begin{table}[h]
+\centering\small
+\input{generated/table_lime_prf}
+\caption{LIME's precision and recall for the trustworthy class (\S5.3 protocol), mean over 100 rounds. Recall is consistently high on text. On Heart the lower recall means LIME flags too many trustworthy predictions as untrustworthy.}
+\label{tab:prf}
+\end{table}
+
+\paragraph{Annotator instructions (verbatim summary).} ``You are asked to rate 60 predictions made by a machine-learning model that estimates whether a patient has heart disease, each shown with an automatic explanation (LIME) \ldots{} The explanation lists up to 5 facts about the patient and whether each pushed the model towards DISEASE or NO DISEASE; a larger weight means a stronger push. Q1 How much do you trust this prediction? (1 = strongly distrust, 2 = distrust, 3 = unsure, 4 = trust, 5 = strongly trust). Q2 Does the explanation make sense given the patient record? (Yes/No).'' The LLM judge receives the same text as its system prompt (\texttt{src/llm\_judge.py}).

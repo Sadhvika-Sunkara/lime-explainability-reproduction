@@ -1,0 +1,48 @@
+{
+  "dataset": "imdb",
+  "num_samples": 15000,
+  "n_test": 400,
+  "l1logreg": {
+    "C": 0.03000000000000004,
+    "n_nonzero_coef": 11,
+    "test_accuracy": 0.66,
+    "parzen_sigma": 2.0,
+    "parzen_sigma_source": "cv",
+    "n_scored": 374,
+    "mean_gold_size": 3.2620320855614975,
+    "seconds": 142.0,
+    "recall": {
+      "random": 0.11761841100076394,
+      "parzen": 0.4567799847211612,
+      "greedy": 0.49575163398692806,
+      "LIME": 0.8139069264069264
+    },
+    "recall_std": {
+      "random": 0.23918353233618497,
+      "parzen": 0.3065440079255618,
+      "greedy": 0.34516188023078465,
+      "LIME": 0.22108735096601792
+    }
+  },
+  "tree": {
+    "depth": 55,
+    "test_accuracy": 0.665,
+    "parzen_sigma": 1.0,
+    "parzen_sigma_source": "cv",
+    "n_scored": 368,
+    "mean_gold_size": 1.5923913043478262,
+    "seconds": 217.0,
+    "recall": {
+      "random": 0.1096014492753623,
+      "parzen": 0.1793478260869565,
+      "greedy": 0.36209239130434784,
+      "LIME": 0.951766304347826
+    },
+    "recall_std": {
+      "random": 0.28819867526243137,
+      "parzen": 0.336978435472561,
+      "greedy": 0.4358182652258009,
+      "LIME": 0.1391259455302119
+    }
+  }
+}

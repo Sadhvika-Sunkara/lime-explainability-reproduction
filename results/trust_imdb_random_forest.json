@@ -1,0 +1,52 @@
+{
+  "dataset": "imdb",
+  "algorithm": "random_forest",
+  "num_samples": 15000,
+  "n_test": 400,
+  "test_accuracy": 0.79,
+  "parzen_sigma": 0.1,
+  "parzen_sigma_source": "cv",
+  "num_rounds": 100,
+  "percent_untrustworthy": 0.25,
+  "flipped_mean": 49.37,
+  "flipped_std": 13.66795888199844,
+  "explain_seconds": 921.0,
+  "results": {
+    "random": {
+      "precision": 0.8960260787453272,
+      "recall": 0.06973345049134029,
+      "f1": 0.12872742161677597,
+      "precision_std": 0.0658207164686201,
+      "recall_std": 0.019966563378888844,
+      "f1_std": 0.03424638858827619,
+      "f1_pvalue_vs_LIME": 1.1677564823709494e-246
+    },
+    "parzen": {
+      "precision": 0.8818688829721734,
+      "recall": 0.9385420180167339,
+      "f1": 0.9089071919185423,
+      "precision_std": 0.03504676584661809,
+      "recall_std": 0.017769132186159664,
+      "f1_std": 0.021205414634952728,
+      "f1_pvalue_vs_LIME": 3.7806583510040535e-77
+    },
+    "greedy": {
+      "precision": 0.8334677109962837,
+      "recall": 0.314779202763748,
+      "f1": 0.45428256894642366,
+      "precision_std": 0.04552985164928676,
+      "recall_std": 0.05791086124304454,
+      "f1_std": 0.06367574786052871,
+      "f1_pvalue_vs_LIME": 4.54432685975447e-154
+    },
+    "LIME": {
+      "precision": 0.9670907408142742,
+      "recall": 0.9886667419922837,
+      "f1": 0.9776687463377043,
+      "precision_std": 0.014870296481789596,
+      "recall_std": 0.006753135732453799,
+      "f1_std": 0.006920902117958521,
+      "f1_pvalue_vs_LIME": null
+    }
+  }
+}

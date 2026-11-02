@@ -1,0 +1,140 @@
+\documentclass[11pt]{article}
+
+\usepackage[final]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\IfFileExists{inconsolata.sty}{\usepackage{inconsolata}}{}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{xurl}
+
+\input{generated/annotation_macros}
+\input{generated/results_macros}
+\newcommand{\repo}{\url{https://github.com/Sadhvika-Sunkara/lime-explainability-reproduction}}
+
+\title{Reproducing and Extending LIME: Faithfulness and Trust of Local\\Explanations on New Text, Tabular and Human-Annotated Data}
+
+\author{Sadhvika Sunkara \\
+  Student ID 48768111 \\
+  COMP8240 Applications of Data Science, Macquarie University \\
+  \texttt{sadhvika.sunkara@student.mq.edu.au}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We reproduce the two simulated-user experiments of \citet{ribeiro2016}, which introduced LIME, a model-agnostic method for explaining individual predictions. The authors' code is frozen at Python~2.7 and no longer installs, so we port it to Python~3 and re-run both experiments on the original Books and DVDs review data. LIME's recall of the features a model truly uses is \ReplRecallRange{} (paper: 90.2--97.8), and its F1 for deciding whether a prediction can be trusted is \ReplTrustRange{} (paper: 91.8--96.7). LIME is the best of the four explainers in all 16 replicated settings, as the paper reports. We then apply the same protocols to two datasets the paper did not use, IMDB movie reviews and the UCI Heart Disease table, and build a new 60-item dataset of human and LLM-as-judge trust ratings of LIME explanations. LIME generalises well to new text. On tabular data its faithfulness to a decision tree falls to \HeartTreeRecall{}\%, and in the trust task a Parzen-window baseline matches or beats it. Three human raters agree well on trust (Krippendorff's $\alpha$\,=\,\AlphaTrust{}) and trust correct predictions more than wrong ones (AUC \AUCHuman{}). However, this is fully explained by the model confidence shown next to each prediction, and LIME's explanations add no detectable signal. We also report how far an LLM judge agrees with the human raters.
+\end{abstract}
+
+\section{Introduction}
+Accurate classifiers are often opaque: a user cannot see why a particular prediction was made, and so cannot tell whether it rests on sensible evidence or on an artefact of the training data \citep{doshivelez2017}. \citet{ribeiro2016} proposed LIME (Local Interpretable Model-agnostic Explanations), which explains one prediction by fitting a sparse linear model to the black box's behaviour on perturbations of that input. The paper's central empirical claims are that LIME's explanations are \emph{faithful} to the model and \emph{useful for deciding whether to trust} a prediction.
+
+This report (i) describes the paper and why it was chosen (\S\ref{sec:paper}) and its data (\S\ref{sec:data}); (ii) replicates its two simulated-user experiments with the original data and the authors' own code, ported to a modern stack (\S\ref{sec:repl}); (iii) builds new data: two existing datasets in a new text domain and a new modality, and a new human-annotated set of trust judgements (\S\ref{sec:newdata}); (iv) reports results on the new data, including an LLM-as-judge evaluation (\S\ref{sec:newres}); and (v) discusses ethics (\S\ref{sec:ethics}) and conclusions (\S\ref{sec:concl}). All code, results and the new annotations are public.\footnote{\repo}
+
+%=====================================================================
+\section{The Paper and Why We Chose It}
+\label{sec:paper}
+\paragraph{Method.} \citet{ribeiro2016}\footnote{\url{https://doi.org/10.1145/2939672.2939778}; preprint \url{https://arxiv.org/abs/1602.04938}} explain a prediction as follows. For an instance $x$, LIME draws $N$ perturbed samples $z$ around an interpretable representation $x'$ of $x$: for text, a binary bag of words, with perturbations that drop random subsets of the document's words. Each sample is weighted by a proximity kernel $\pi_x(z)$, and the explanation is
+\begin{equation*}
+\xi(x)=\operatorname*{argmin}_{g\in G}\;\mathcal{L}(f,g,\pi_x)+\Omega(g),
+\end{equation*}
+where $f$ is the black box, $G$ the class of sparse linear models, $\mathcal{L}$ the $\pi_x$-weighted squared loss and $\Omega$ caps the explanation at $K$ features. The authors select $K$ features along the LARS--lasso path and refit them by least squares (``K-LASSO''). The paper also proposes SP-LIME, a submodular procedure for choosing a small, non-redundant set of explanations to show a user. LIME later became the basis for SHAP \citep{lundberg2017} and Anchors \citep{ribeiro2018}.
+
+\paragraph{Evaluation framework.} The paper evaluates explanations at three levels: simulated users with known ground truth, human users on simple tasks, and human users on real tasks. Its two quantitative simulated-user experiments, which are the targets of this reproduction, are:
+\begin{itemize}\itemsep0pt
+\item \textbf{Faithfulness (\S5.2).} Train classifiers whose truly used (``gold'') features are known: a sparse logistic regression (LR) and a decision tree (DT), each limited to ${\le}10$ features per prediction. Ask each explainer for $K{=}10$ features and measure the \emph{recall} of the gold features. LIME is reported at 90.2--97.8\% recall, against 17--21\% for a random explainer, 61--81\% for a Parzen-window approximation and 37--64\% for a greedy feature-removal procedure (paper Figs.~6--7).
+\item \textbf{Trust in predictions (\S5.3).} Mark 25\% of the features as ``untrustworthy''. A prediction is truly untrustworthy if removing those features from the instance changes the prediction. A simulated user distrusts a prediction if, according to the explanation, removing the untrustworthy features would change it. The metric is F1 on the trustworthy class, averaged over 100 rounds, for LR, nearest-neighbour (NN), random forest (RF) and RBF-SVM classifiers. LIME scores 91.8--96.7 against at most 94.3 for Parzen, 58.1 for greedy and 14.8 for random (paper Table~1; reproduced in our Table~\ref{tab:trustrepl}).
+\end{itemize}
+The paper also reports human-subject studies, for example 27 graduate students judging a husky-vs-wolf classifier that had learned to detect snow. These require bespoke data and participants, and are not replication targets. Our new annotated dataset (\S\ref{sec:annot}) instead revisits their underlying question, whether people can use LIME to decide when to trust a prediction.
+
+\paragraph{Justification.} \emph{Venue:} KDD is rated A* (the top tier, held continuously since CORE2008) in the ICORE2026 conference rankings \citep{icore2026}, and research.com places it 13th among all computer-science venues \citep{researchcom2026}. \emph{Impact:} Semantic Scholar records 23,899 citations \citep{semanticscholar2026}, making it one of the most cited papers in explainable AI. \emph{Reproducibility signals:} the experiment code is public \citep{limeexperiments}, the packaged library has about 12k GitHub stars \citep{limepackage}, the review datasets are public, and nothing needs a GPU. \emph{Room to extend:} the method is model-agnostic, so it applies to any new dataset; the paper's trust experiments use only synthetic ``untrustworthy'' features and few human raters, gaps our new data address.
+
+%=====================================================================
+\section{The Original Datasets}
+\label{sec:data}
+The quantitative experiments use two domains of the Multi-Domain Sentiment Dataset \citep{blitzer2007}:\footnote{\url{https://www.cs.jhu.edu/~mdredze/datasets/sentiment/}} Amazon reviews of \textbf{Books} and \textbf{DVDs}, with 1,000 positive (4--5 stars) and 1,000 negative (1--2 stars) reviews each. Following the authors' loader, each class is shuffled with seed~1 and split 80/20, giving 1,600 training and 400 test reviews per domain. Each review is a pseudo-XML record (Figure~\ref{fig:data}a) with product, rating, title, reviewer name and location, and free text. Only \texttt{review\_text} and the polarity are used. The authors used a pre-tokenised bag-of-words release of the same reviews, while we tokenise the raw text (\S\ref{sec:repl}). Vocabularies are 20,016 (Books) and 19,422 (DVDs) word types, with 172 and 168 tokens per review on average. The paper's other datasets are 20 Newsgroups ``Christianity vs.\ Atheism'' \citep{lang1995}, a religion web-page set the authors collected, and a 20-image husky/wolf set. These were used only in the human-subject studies we do not replicate.
+
+\begin{figure}[t]
+\centering\scriptsize
+\fbox{\parbox{0.95\columnwidth}{\ttfamily
+\textbf{(a) Books, positive.review} (original data)\\
+<review><asin>0743277724</asin> <product\_name>Pegasus Descending: A Dave Robicheaux Novel ...</product\_name> <rating>4.0</rating> <title>For lovers of Robicheaux</title> <reviewer>[redacted]</reviewer> <reviewer\_location>[redacted]</reviewer\_location> <review\_text>This book is for lovers of Robicheaux. His demons seem put to rest, redemption seems almost within his grasp - and yet the worst mayhem ever occurs within these pages. ...</review\_text></review>}}\\[3pt]
+\fbox{\parbox{0.95\columnwidth}{\ttfamily
+\textbf{(b) IMDB} (new, existing): review,sentiment\\
+"Probably my all-time favorite movie, a story of selflessness, sacrifice and dedication to a noble cause, but it's not preachy or boring. ...",positive}}\\[3pt]
+\fbox{\parbox{0.95\columnwidth}{\ttfamily
+\textbf{(c) processed.cleveland.data} (new, existing)\\ columns: age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal, num\\
+63.0,1.0,1.0,145.0,233.0,1.0,2.0,\\\hspace*{1em}150.0,0.0,2.3,3.0,0.0,6.0,0\\
+67.0,1.0,4.0,160.0,286.0,0.0,2.0,\\\hspace*{1em}108.0,1.0,1.5,2.0,3.0,3.0,2}}\\[3pt]
+\fbox{\parbox{0.95\columnwidth}{\ttfamily
+\textbf{(d) New annotated item H01} (constructed)\\
+Patient: age 64; male; chest pain asymptomatic; BP 128; chol 263; max HR 105; exercise angina; ST depr.\ 0.2; slope flat; 1 vessel; thal reversible defect\\
+Prediction: DISEASE (91\%)\\
+LIME: thal=reversible defect $\rightarrow$ DISEASE (0.20); chest pain=asymptomatic $\rightarrow$ DISEASE (0.14); vessels=1 $\rightarrow$ DISEASE (0.13); exercise angina $\rightarrow$ DISEASE (0.09); sex=male $\rightarrow$ DISEASE (0.09)\\
+Rater A/B/C: trust 1--5, makes sense Y/N \quad LLM: trust, makes sense, reason}}
+\caption{Data snippets. Reviewer names and locations are redacted here although they are present in the public release (\S\ref{sec:ethics}).}
+\label{fig:data}
+\end{figure}
+
+%=====================================================================
+\section{Replication of the Original Work}
+\label{sec:repl}
+\paragraph{Environment.} The authors' code \citep{limeexperiments} pins Python~2.7, \texttt{numpy}~1.14, \texttt{scipy}~0.17 and \texttt{scikit-learn}~0.18. Those wheels do not exist for current Python versions, and the code uses Python~2 syntax and removed scikit-learn APIs (e.g.\ \texttt{sklearn.cross\_validation}). We therefore ported it to Python~3.13 with \texttt{scikit-learn}~1.9.1, \texttt{numpy}~2.5.3, \texttt{scipy}~1.18.1 and \texttt{lime}~0.2.0.1, on a 2-core Linux CPU machine. Earlier development ran on GitHub Codespaces and a Windows laptop. All versions are pinned in \texttt{requirements.txt}, \texttt{scripts/get\_data.py} downloads the data, and \texttt{run\_all.sh} re-runs every experiment. All replication scripts are in our public GitHub repository.\footnote{\repo{} (scripts in \texttt{src/}, raw results in \texttt{results/})}
+
+\paragraph{What was ported, and how.} Our module \texttt{src/explainers.py} re-implements the four explainers from the authors' \texttt{explainers.py} and \texttt{parzen\_windows.py} with the same algorithms and hyperparameters: LIME with $N{=}15{,}000$ samples, kernel $\sqrt{\exp(-d^2/\rho^2)}$, $d=100\times$ cosine distance, $\rho{=}25$, and K-LASSO; Parzen fitted on 5-fold cross-validated predictions, using the authors' per-dataset bandwidths; greedy removal; and random selection. The scripts \texttt{run\_faithfulness.py} and \texttt{run\_trust.py} port \texttt{evaluate\_explanations.py} and \texttt{data\_trusting.py}, including their classifier settings (e.g.\ RF with 1,000 trees of depth 5, SVM with $C{=}10$, $\gamma{=}0.001$), seeds, the decision rules of the simulated users and the switched-sign F1 definition. Changes are limited to: (1)~Python~3 and current-API syntax; (2)~vectorised versions of the perturbation sampler, greedy search and Parzen gradient, each drawing from the same distribution as the original loops; and (3)~an exact closed-form RBF-SVM probability function for LIME's perturbations (\texttt{FastRBFSVC}; decision values match scikit-learn's to $10^{-11}$, probabilities to within libsvm's 0.005 coupling tolerance, verified in \texttt{tests/}). It is 6$\times$ faster, which made 15,000 samples per explanation affordable.
+
+\paragraph{Unavoidable deviations.} (a)~\emph{Input format.} The authors read a pre-tokenised release (\texttt{processed\_acl}) that is no longer linked from the dataset page. We read the raw review text of the same 2,000 reviews per domain and tokenise with scikit-learn, so vocabularies and some documents differ slightly. (b)~\emph{RF features.} The paper says its RF used averaged word2vec embeddings, but the released code's \texttt{random\_forest} option is a bag-of-words forest (the embedding variant needs an unreleased word2vec setup), so we use the code's version. (c)~\emph{Figure values.} Figs.~6--7 give recall values only as bar labels, which we transcribed by hand. Table~1 values are printed in the paper.
+
+\paragraph{An earlier, partial attempt.} Our project-update replication used the \texttt{lime} package's text explainer directly, with 80 Books test reviews, 1,000 samples, 10 rounds, LR only and a stop-word-filtered vocabulary. It reached a trust F1 of 97.5$\pm$0.9 for LIME (paper: 96.6), but it covered one of the paper's eight settings and none of its baselines. It also used a slightly different trust rule, comparing the local model with and without the untrustworthy words instead of comparing against the black box's own probability. The port described above replaces it and covers every setting of both experiments.
+
+\subsection{Replicated results}
+\input{sections/replication_results}
+
+%=====================================================================
+\section{Construction of New Data}
+\label{sec:newdata}
+We use two existing datasets that the paper did not, chosen to vary one property each relative to the original data, and construct one new annotated dataset.
+
+\paragraph{IMDB (new text domain).} The Large Movie Review Dataset \citep{maas2011}\footnote{\url{https://ai.stanford.edu/~amaas/data/sentiment/}} contains 50,000 movie reviews, balanced between positive and negative, distributed as a single CSV of \texttt{review,sentiment} pairs (Figure~\ref{fig:data}b). Its reviews are longer than the product reviews (231 vs.\ 170 tokens per review on average). To keep everything else equal to the replication, we draw a balanced random sample of 1,000 positive and 1,000 negative reviews (seed 1), remove HTML line breaks, and apply exactly the Books/DVDs pipeline: 80/20 split, binary bag of words, same classifiers, same explainers, $K{=}10$. Parzen bandwidths, which the authors tuned per dataset, are chosen by their own criterion (least disagreement with the classifier's cross-validated predictions).
+
+\paragraph{UCI Heart Disease (new modality).} The processed Cleveland subset of the UCI Heart Disease data \citep{janosi1988,detrano1989}\footnote{\url{https://archive.ics.uci.edu/dataset/45/heart+disease}, CC BY 4.0} has 303 patients and 13 clinical attributes (Figure~\ref{fig:data}c): 5 continuous (age, resting blood pressure, cholesterol, maximum heart rate, ST depression) and 8 categorical (sex, chest-pain type, fasting sugar, resting ECG, exercise angina, ST slope, vessels coloured, thallium test). We drop the 6 records with missing \texttt{ca}/\texttt{thal} (297 remain) and binarise the target (0 = no disease, 1--4 = disease; 46\% positive). Tabular data exercises LIME's other perturbation mode, which samples features from training statistics and discretises continuous features into quartiles, and the paper does not evaluate it quantitatively. Adapting the protocols required three decisions: (i)~``removing'' a feature means resetting it to its training median (continuous) or mode (categorical), which the oracle, greedy and Parzen all use; (ii)~$K{=}5$ of 13 features, since $K{=}10$ would make recall nearly trivial, and the trust experiment marks 3 of 13 features (25\%) as untrustworthy; and (iii)~a 60-patient test set is too small to score, so every patient is explained by a model trained on the other four folds of a stratified 5-fold split (cross-fitting). LIME here is the official \texttt{lime} package's tabular explainer with $N{=}15{,}000$ samples.
+
+\subsection{New human-annotated trust dataset}
+\label{sec:annot}
+To test the paper's motivating claim with real people rather than simulated users, we built an \emph{explanation-trust} dataset of 60 Heart Disease predictions. The model is the random forest from our project update (300 trees, depth 6), with cross-fitted accuracy 84.8\% (252/297). We sampled 20 incorrect and 40 correct predictions (seed 1) and shuffled them. Errors are over-sampled relative to their 15\% base rate, so that there is enough signal to test whether raters can spot predictions that should not be trusted. Each item shows the patient's full record in plain language, the predicted class and confidence, and LIME's top-5 explanation, worded as ``fact $\rightarrow$ towards DISEASE / NO DISEASE (weight)'' (Figure~\ref{fig:data}d). Raters answer \textbf{Q1} ``How much do you trust this prediction?'' (1 = strongly distrust \ldots{} 5 = strongly trust) and \textbf{Q2} ``Does the explanation make sense given the patient record?'' (Yes/No). They never see the true label. The sheet (\texttt{annotation/annotation\_sheet.xlsx}) includes a participant-information and consent page, a worked example row and input validation.
+
+\paragraph{Annotators and agreement.} Three annotators (the author and two classmates, none with clinical training) rated all 60 items independently. Unpaid volunteers stand in for the paper's paid Mechanical Turk workers. We measure agreement with Krippendorff's $\alpha$ \citep{krippendorff2011}, ordinal for Q1 and nominal for Q2, because it handles ordinal data and missing ratings; our implementation reproduces the reference values in that paper. We also report pairwise quadratic-weighted Cohen's $\kappa$ \citep{cohen1968}.
+
+\paragraph{LLM-as-judge.} The same 60 items, with the same instructions and questions, were given to an LLM (\LLMModel{}, temperature 0, JSON output, three independent repeats; \texttt{src/llm\_judge.py}), which also never saw the true label. The judge plays the role of an additional, scalable annotator \citep{zheng2023}. We check it in two ways: \emph{agreement} with the human consensus (quadratic-weighted $\kappa$ against the median human rating; $\kappa$ against the Q2 majority), and \emph{validity}, i.e.\ whether its trust ratings separate correct from incorrect predictions as well as human ratings do (ROC AUC).
+
+%=====================================================================
+\section{Results on New Data}
+\label{sec:newres}
+\input{sections/new_results}
+
+%=====================================================================
+\section{Ethical Considerations}
+\label{sec:ethics}
+\input{sections/ethics}
+
+%=====================================================================
+\section{Conclusions and Reflections}
+\label{sec:concl}
+\input{sections/conclusions}
+
+\paragraph{Use of AI tools.} Generative AI assisted with porting code and drafting text. All code was run and checked, every number in the results tables is generated from the result files by \texttt{src/make\_tables.py}, and all references were checked by the author.
+
+\bibliography{references}
+
+\appendix
+\section{Experimental details}
+\label{app:details}
+\input{sections/appendix}
+
+\end{document}

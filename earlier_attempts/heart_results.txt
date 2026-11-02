@@ -1,0 +1,159 @@
+Loaded 303 rows via ucimlrepo
+Dropped 6 rows with missing values ('?' in ca/thal) -> 297 rows remain.
+
+Test accuracy: 0.867
+Test F1 score: 0.852
+Train/test sizes: 237 / 60
+
+=== LIME explanations for 15 test predictions ===
+('+' pushes toward 'disease', '-' pushes toward 'no disease' -- always relative to the disease class, regardless of which class was predicted)
+
+--- Instance 0 ---
+True class: no disease  |  Predicted: no disease  (p=0.922)
+Top features driving this prediction:
+  - thal=normal: -0.236
+  - ca=0: -0.158
+  - cp=non-anginal pain: -0.100
+  - sex=female: -0.067
+  - exang=no exercise angina: -0.061
+  - slope=upsloping: -0.061
+
+--- Instance 1 ---
+True class: no disease  |  Predicted: no disease  (p=0.856)
+Top features driving this prediction:
+  - thal=normal: -0.236
+  - ca=0: -0.163
+  - cp=non-anginal pain: -0.095
+  + sex=male: +0.066
+  - exang=no exercise angina: -0.064
+  - slope=upsloping: -0.060
+
+--- Instance 2 ---
+True class: no disease  |  Predicted: no disease  (p=0.783)
+Top features driving this prediction:
+  - thal=normal: -0.237
+  + ca=1: +0.118
+  - cp=non-anginal pain: -0.106
+  - sex=female: -0.069
+  - slope=upsloping: -0.065
+  - exang=no exercise angina: -0.062
+
+--- Instance 3 ---
+True class: no disease  |  Predicted: no disease  (p=0.944)
+Top features driving this prediction:
+  - thal=normal: -0.231
+  - ca=0: -0.169
+  - cp=atypical angina: -0.087
+  - exang=no exercise angina: -0.071
+  - slope=upsloping: -0.063
+  + sex=male: +0.060
+
+--- Instance 4 ---
+True class: no disease  |  Predicted: no disease  (p=0.936)
+Top features driving this prediction:
+  - thal=normal: -0.230
+  - ca=0: -0.162
+  - cp=atypical angina: -0.085
+  - exang=no exercise angina: -0.068
+  - sex=female: -0.063
+  + slope=flat: +0.054
+
+--- Instance 5 ---
+True class: no disease  |  Predicted: no disease  (p=0.554)
+Top features driving this prediction:
+  + thal=reversible defect: +0.233
+  - ca=0: -0.169
+  + oldpeak > 1.60: +0.128
+  + sex=male: +0.069
+  - exang=no exercise angina: -0.060
+  + slope=flat: +0.056
+
+--- Instance 6 ---
+True class: disease  |  Predicted: disease  (p=0.615)
+Top features driving this prediction:
+  + oldpeak > 1.60: +0.131
+  + ca=1: +0.120
+  - cp=non-anginal pain: -0.102
+  + sex=male: +0.074
+  - exang=no exercise angina: -0.058
+  + slope=flat: +0.052
+
+--- Instance 7 ---
+True class: disease  |  Predicted: disease  (p=0.814)
+Top features driving this prediction:
+  + thal=reversible defect: +0.232
+  + cp=asymptomatic: +0.155
+  + ca=1: +0.119
+  - slope=upsloping: -0.067
+  + exang=exercise-induced angina: +0.063
+  - oldpeak <= 0.00: -0.058
+
+--- Instance 8 ---
+True class: no disease  |  Predicted: no disease  (p=0.531)
+Top features driving this prediction:
+  + thal=reversible defect: +0.235
+  - ca=0: -0.159
+  - cp=atypical angina: -0.086
+  - slope=upsloping: -0.063
+  - exang=no exercise angina: -0.059
+  + sex=male: +0.058
+
+--- Instance 9 ---
+True class: no disease  |  Predicted: no disease  (p=0.718)
+Top features driving this prediction:
+  - ca=0: -0.162
+  - cp=typical angina: -0.089
+  - exang=no exercise angina: -0.060
+  + sex=male: +0.057
+  - oldpeak <= 0.00: -0.051
+  + slope=flat: +0.048
+
+--- Instance 10 ---
+True class: disease  |  Predicted: disease  (p=0.888)
+Top features driving this prediction:
+  + thal=reversible defect: +0.227
+  + cp=asymptomatic: +0.152
+  + oldpeak > 1.60: +0.126
+  + ca=1: +0.123
+  + thalach <= 133.00: +0.091
+  - exang=no exercise angina: -0.064
+
+--- Instance 11 ---
+True class: no disease  |  Predicted: no disease  (p=0.744)
+Top features driving this prediction:
+  - thal=normal: -0.232
+  - ca=0: -0.164
+  + cp=asymptomatic: +0.147
+  - exang=no exercise angina: -0.068
+  - slope=upsloping: -0.066
+  - sex=female: -0.060
+
+--- Instance 12 ---
+True class: no disease  |  Predicted: no disease  (p=0.784)
+Top features driving this prediction:
+  - thal=normal: -0.228
+  + ca=2: +0.123
+  - cp=atypical angina: -0.081
+  - slope=upsloping: -0.069
+  - sex=female: -0.066
+  - exang=no exercise angina: -0.064
+
+--- Instance 13 ---
+True class: no disease  |  Predicted: no disease  (p=0.801)
+Top features driving this prediction:
+  - thal=normal: -0.232
+  + ca=1: +0.113
+  - cp=non-anginal pain: -0.100
+  - exang=no exercise angina: -0.066
+  - sex=female: -0.064
+  + slope=flat: +0.062
+
+--- Instance 14 ---
+True class: no disease  |  Predicted: no disease  (p=0.535)
+Top features driving this prediction:
+  + thal=reversible defect: +0.229
+  - ca=0: -0.157
+  - cp=atypical angina: -0.088
+  + sex=male: +0.066
+  - oldpeak <= 0.00: -0.060
+  - slope=upsloping: -0.060

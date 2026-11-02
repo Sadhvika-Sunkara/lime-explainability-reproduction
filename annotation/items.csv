@@ -1,0 +1,1021 @@
+item_id,patient,prediction,confidence,explanation,explanation_raw
+H01,"age (years): 64
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 128
+serum cholesterol (mg/dl): 263
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 105
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: reversible defect",DISEASE,0.91,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.20)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.13)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.203; cp=asymptomatic: +0.141; ca=1 vessel: +0.132; exang=exercise angina: +0.090; sex=male: +0.088
+H02,"age (years): 43
+sex: female
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 122
+serum cholesterol (mg/dl): 213
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 165
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.98,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=female  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.220; ca=0 vessels: -0.218; cp=non-anginal pain: -0.126; slope=flat: +0.086; sex=female: -0.080
+H03,"age (years): 47
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 112
+serum cholesterol (mg/dl): 204
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 143
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.1
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.76,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",ca=0 vessels: -0.219; thal=normal: -0.218; cp=asymptomatic: +0.163; slope=upsloping: -0.091; sex=male: +0.084
+H04,"age (years): 57
+sex: female
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 236
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 174
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",NO DISEASE,0.72,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.14)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+sex=female  ->  towards NO DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.180; ca=1 vessel: +0.135; slope=flat: +0.081; sex=female: -0.078; exang=no exercise angina: -0.077
+H05,"age (years): 56
+sex: female
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 294
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 153
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1.3
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.84,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+sex=female  ->  towards NO DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)",thal=normal: -0.204; ca=0 vessels: -0.190; sex=female: -0.092; exang=no exercise angina: -0.087; slope=flat: +0.076
+H06,"age (years): 64
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 170
+serum cholesterol (mg/dl): 227
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 155
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.61,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.20)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+sex=male  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)",ca=0 vessels: -0.195; thal=reversible defect: +0.187; slope=flat: +0.082; sex=male: +0.078; exang=no exercise angina: -0.077
+H07,"age (years): 42
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 148
+serum cholesterol (mg/dl): 244
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 178
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.8
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: normal",NO DISEASE,0.56,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.16)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)
+sex=male  ->  towards DISEASE  (weight 0.07)",thal=normal: -0.184; ca=2 vessels: +0.162; slope=upsloping: -0.084; exang=no exercise angina: -0.082; sex=male: +0.075
+H08,"age (years): 57
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 165
+serum cholesterol (mg/dl): 289
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 124
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: reversible defect",DISEASE,0.91,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.25)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+major vessels coloured by fluoroscopy=3 vessels  ->  towards DISEASE  (weight 0.12)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.07)",thal=reversible defect: +0.245; cp=asymptomatic: +0.143; ca=3 vessels: +0.123; slope=flat: +0.084; exang=no exercise angina: -0.072
+H09,"age (years): 60
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 158
+serum cholesterol (mg/dl): 305
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 161
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.72,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)
+sex=female  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.202; ca=0 vessels: -0.187; cp=asymptomatic: +0.142; exang=no exercise angina: -0.093; sex=female: -0.085
+H10,"age (years): 34
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 118
+serum cholesterol (mg/dl): 182
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 174
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.9,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+sex=male  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.201; ca=0 vessels: -0.186; sex=male: +0.093; exang=no exercise angina: -0.083; slope=upsloping: -0.077
+H11,"age (years): 44
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 120
+serum cholesterol (mg/dl): 226
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 169
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.95,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",ca=0 vessels: -0.189; thal=normal: -0.182; cp=non-anginal pain: -0.120; slope=upsloping: -0.092; sex=male: +0.085
+H12,"age (years): 52
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 125
+serum cholesterol (mg/dl): 212
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 168
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: reversible defect",DISEASE,0.73,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.21)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.15)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.14)
+sex=male  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)",thal=reversible defect: +0.208; cp=asymptomatic: +0.147; ca=2 vessels: +0.139; sex=male: +0.091; exang=no exercise angina: -0.086
+H13,"age (years): 53
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 246
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 173
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: normal",NO DISEASE,0.66,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.21)
+major vessels coloured by fluoroscopy=3 vessels  ->  towards DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.07)",thal=normal: -0.214; ca=3 vessels: +0.178; cp=non-anginal pain: -0.127; slope=upsloping: -0.094; sex=male: +0.073
+H14,"age (years): 59
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 160
+serum cholesterol (mg/dl): 273
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 125
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.71,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.21)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.07)",thal=normal: -0.218; ca=0 vessels: -0.213; slope=upsloping: -0.094; sex=male: +0.083; exang=no exercise angina: -0.066
+H15,"age (years): 56
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 132
+serum cholesterol (mg/dl): 184
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 105
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 2.1
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: fixed defect",DISEASE,0.91,"chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.17)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.14)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.11)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",cp=asymptomatic: +0.169; ca=1 vessel: +0.142; oldpeak > 1.80: +0.114; slope=flat: +0.091; sex=male: +0.082
+H16,"age (years): 53
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 142
+serum cholesterol (mg/dl): 226
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 111
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.76,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+max heart rate achieved <= 136.00  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.08)",ca=0 vessels: -0.191; thal=reversible defect: +0.191; cp=asymptomatic: +0.164; thalach <= 136.00: +0.101; slope=upsloping: -0.084
+H17,"age (years): 50
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 144
+serum cholesterol (mg/dl): 200
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 126
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0.9
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.84,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+sex=male  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.205; ca=0 vessels: -0.188; cp=asymptomatic: +0.140; sex=male: +0.090; exang=exercise angina: +0.088
+H18,"age (years): 56
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 134
+serum cholesterol (mg/dl): 409
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 150
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.9
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: reversible defect",DISEASE,0.93,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.18)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.13)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.13)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.12)",thal=reversible defect: +0.191; cp=asymptomatic: +0.180; oldpeak > 1.80: +0.133; ca=2 vessels: +0.126; exang=exercise angina: +0.118
+H19,"age (years): 65
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 135
+serum cholesterol (mg/dl): 254
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 127
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 2.8
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: reversible defect",DISEASE,0.95,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.17)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.14)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)",thal=reversible defect: +0.190; ca=1 vessel: +0.189; cp=asymptomatic: +0.174; oldpeak > 1.80: +0.137; exang=no exercise angina: -0.118
+H20,"age (years): 63
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 187
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 144
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 4
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: reversible defect",DISEASE,0.94,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.21)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.17)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.15)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.11)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)",thal=reversible defect: +0.209; cp=asymptomatic: +0.168; ca=2 vessels: +0.152; oldpeak > 1.80: +0.111; slope=upsloping: -0.092
+H21,"age (years): 59
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 135
+serum cholesterol (mg/dl): 234
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 161
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.5
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.57,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.15)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)",ca=0 vessels: -0.193; thal=reversible defect: +0.185; cp=asymptomatic: +0.155; slope=flat: +0.085; exang=no exercise angina: -0.082
+H22,"age (years): 61
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 330
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 169
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.77,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+sex=female  ->  towards NO DISEASE  (weight 0.08)",ca=0 vessels: -0.219; thal=normal: -0.219; cp=asymptomatic: +0.163; slope=upsloping: -0.091; sex=female: -0.081
+H23,"age (years): 42
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 102
+serum cholesterol (mg/dl): 265
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 122
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.83,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+max heart rate achieved <= 132.25  ->  towards DISEASE  (weight 0.08)",thal=normal: -0.242; ca=0 vessels: -0.190; cp=asymptomatic: +0.141; slope=flat: +0.085; thalach <= 132.25: +0.078
+H24,"age (years): 51
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 299
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 173
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.6
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.64,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.08)",ca=0 vessels: -0.193; thal=reversible defect: +0.185; cp=asymptomatic: +0.159; slope=upsloping: -0.087; exang=exercise angina: +0.077
+H25,"age (years): 48
+sex: male
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 245
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 180
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.9,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)
+0.00 < ST depression <= 0.80  ->  towards NO DISEASE  (weight 0.06)",thal=normal: -0.240; ca=0 vessels: -0.188; slope=flat: +0.084; exang=no exercise angina: -0.077; 0.00 < oldpeak <= 0.80: -0.065
+H26,"age (years): 57
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 110
+serum cholesterol (mg/dl): 201
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 126
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.5
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: fixed defect",DISEASE,0.7,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+sex=male  ->  towards DISEASE  (weight 0.09)
+max heart rate achieved <= 138.00  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)",ca=0 vessels: -0.191; cp=asymptomatic: +0.140; sex=male: +0.091; thalach <= 138.00: +0.088; exang=exercise angina: +0.086
+H27,"age (years): 49
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 120
+serum cholesterol (mg/dl): 188
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 139
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: reversible defect",DISEASE,0.59,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+ST depression > 1.75  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)",thal=reversible defect: +0.180; cp=non-anginal pain: -0.132; oldpeak > 1.75: +0.102; slope=flat: +0.089; exang=no exercise angina: -0.081
+H28,"age (years): 41
+sex: female
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 204
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 172
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1.4
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.98,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.10)
+sex=female  ->  towards NO DISEASE  (weight 0.08)
+max heart rate achieved > 166.00  ->  towards NO DISEASE  (weight 0.07)",ca=0 vessels: -0.220; thal=normal: -0.215; slope=upsloping: -0.095; sex=female: -0.080; thalach > 166.00: -0.074
+H29,"age (years): 49
+sex: male
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 266
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 171
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.6
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.96,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.19)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+chest pain type=atypical angina  ->  towards NO DISEASE  (weight 0.10)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.06)",ca=0 vessels: -0.220; thal=normal: -0.192; exang=no exercise angina: -0.121; cp=atypical angina: -0.098; slope=upsloping: -0.061
+H30,"age (years): 67
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 120
+serum cholesterol (mg/dl): 237
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 71
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.7,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.18)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+sex=male  ->  towards DISEASE  (weight 0.07)",ca=0 vessels: -0.222; thal=normal: -0.197; cp=asymptomatic: +0.177; exang=no exercise angina: -0.120; sex=male: +0.072
+H31,"age (years): 64
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 335
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 158
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.88,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.09)
+ST depression <= 0.00  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.241; ca=0 vessels: -0.182; cp=non-anginal pain: -0.120; slope=upsloping: -0.089; oldpeak <= 0.00: -0.082
+H32,"age (years): 49
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 118
+serum cholesterol (mg/dl): 149
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 126
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.8
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: normal",NO DISEASE,0.71,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+sex=male  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)
+max heart rate achieved <= 138.00  ->  towards DISEASE  (weight 0.09)",thal=normal: -0.197; cp=non-anginal pain: -0.124; sex=male: +0.091; exang=no exercise angina: -0.089; thalach <= 138.00: +0.088
+H33,"age (years): 57
+sex: male
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 154
+serum cholesterol (mg/dl): 232
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 164
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",NO DISEASE,0.67,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.14)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.08)
+sex=male  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.184; ca=1 vessel: +0.138; slope=upsloping: -0.083; sex=male: +0.082; exang=no exercise angina: -0.079
+H34,"age (years): 40
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 110
+serum cholesterol (mg/dl): 167
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 114
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.85,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+ST depression > 1.60  ->  towards DISEASE  (weight 0.12)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.205; ca=0 vessels: -0.189; cp=asymptomatic: +0.141; oldpeak > 1.60: +0.119; exang=exercise angina: +0.087
+H35,"age (years): 68
+sex: female
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 120
+serum cholesterol (mg/dl): 211
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 115
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1.5
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.84,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+max heart rate achieved <= 132.25  ->  towards DISEASE  (weight 0.08)",thal=normal: -0.245; ca=0 vessels: -0.185; cp=non-anginal pain: -0.119; slope=flat: +0.082; thalach <= 132.25: +0.077
+H36,"age (years): 58
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 211
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 165
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.83,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+sex=male  ->  towards DISEASE  (weight 0.09)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)",thal=normal: -0.198; ca=0 vessels: -0.185; cp=non-anginal pain: -0.121; sex=male: +0.088; exang=no exercise angina: -0.087
+H37,"age (years): 63
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 108
+serum cholesterol (mg/dl): 269
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 169
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.8
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: normal",DISEASE,0.62,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.20)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.13)
+ST depression > 1.60  ->  towards DISEASE  (weight 0.12)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)",thal=normal: -0.204; cp=asymptomatic: +0.141; ca=2 vessels: +0.134; oldpeak > 1.60: +0.120; exang=exercise angina: +0.092
+H38,"age (years): 68
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 180
+serum cholesterol (mg/dl): 274
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 150
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.64,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.21)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.21)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",ca=0 vessels: -0.212; thal=reversible defect: +0.211; cp=non-anginal pain: -0.127; slope=flat: +0.090; sex=male: +0.079
+H39,"age (years): 71
+sex: female
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 110
+serum cholesterol (mg/dl): 265
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 130
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",NO DISEASE,0.85,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.14)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.10)
+sex=female  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.216; ca=1 vessel: +0.141; cp=non-anginal pain: -0.126; slope=upsloping: -0.097; sex=female: -0.081
+H40,"age (years): 63
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 150
+serum cholesterol (mg/dl): 407
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 154
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 4
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: reversible defect",DISEASE,0.93,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.21)
+major vessels coloured by fluoroscopy=3 vessels  ->  towards DISEASE  (weight 0.17)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.17)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.11)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.214; ca=3 vessels: +0.171; cp=asymptomatic: +0.168; oldpeak > 1.80: +0.109; slope=flat: +0.087
+H41,"age (years): 69
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 160
+serum cholesterol (mg/dl): 234
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 131
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.1
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",DISEASE,0.56,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.13)
+max heart rate achieved <= 136.00  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",thal=normal: -0.181; ca=1 vessel: +0.132; thalach <= 136.00: +0.098; slope=flat: +0.087; sex=male: +0.079
+H42,"age (years): 60
+sex: female
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 102
+serum cholesterol (mg/dl): 318
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 160
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",NO DISEASE,0.88,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.19)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+ST depression <= 0.00  ->  towards NO DISEASE  (weight 0.07)",thal=normal: -0.193; ca=1 vessel: +0.180; cp=non-anginal pain: -0.134; exang=no exercise angina: -0.116; oldpeak <= 0.00: -0.074
+H43,"age (years): 67
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 125
+serum cholesterol (mg/dl): 254
+fasting blood sugar: fasting sugar > 120
+resting ECG: normal ECG
+max heart rate achieved: 163
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: reversible defect",DISEASE,0.66,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.16)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.09)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)",thal=reversible defect: +0.183; ca=2 vessels: +0.161; cp=asymptomatic: +0.158; exang=no exercise angina: -0.085; slope=flat: +0.078
+H44,"age (years): 56
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 256
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 142
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: fixed defect",DISEASE,0.69,"major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.13)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+sex=male  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.08)",ca=1 vessel: +0.133; cp=non-anginal pain: -0.129; slope=flat: +0.082; sex=male: +0.079; exang=exercise angina: +0.076
+H45,"age (years): 46
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 138
+serum cholesterol (mg/dl): 243
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 152
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.74,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.22)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.21)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=female  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.220; ca=0 vessels: -0.213; cp=asymptomatic: +0.164; slope=flat: +0.090; sex=female: -0.079
+H46,"age (years): 69
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 254
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 146
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: reversible defect",DISEASE,0.62,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+ST depression > 1.75  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)
+sex=male  ->  towards DISEASE  (weight 0.08)",thal=reversible defect: +0.183; cp=non-anginal pain: -0.123; oldpeak > 1.75: +0.097; slope=flat: +0.088; sex=male: +0.081
+H47,"age (years): 43
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 132
+serum cholesterol (mg/dl): 341
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 136
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 3
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.91,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.22)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.21)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.17)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.11)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.216; ca=0 vessels: -0.214; cp=asymptomatic: +0.166; oldpeak > 1.80: +0.112; slope=flat: +0.091
+H48,"age (years): 61
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 138
+serum cholesterol (mg/dl): 166
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 125
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 3.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: normal",DISEASE,0.89,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.13)
+max heart rate achieved <= 136.00  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)",thal=normal: -0.184; cp=asymptomatic: +0.164; ca=1 vessel: +0.135; thalach <= 136.00: +0.101; slope=flat: +0.090
+H49,"age (years): 45
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 138
+serum cholesterol (mg/dl): 236
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 152
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.76,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.07)",thal=normal: -0.241; ca=0 vessels: -0.186; cp=asymptomatic: +0.139; slope=flat: +0.085; exang=exercise angina: +0.071
+H50,"age (years): 68
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 118
+serum cholesterol (mg/dl): 277
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 151
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 1 vessel
+thallium stress test: reversible defect",DISEASE,0.54,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+major vessels coloured by fluoroscopy=1 vessel  ->  towards DISEASE  (weight 0.18)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+sex=male  ->  towards DISEASE  (weight 0.07)",thal=reversible defect: +0.188; ca=1 vessel: +0.183; cp=non-anginal pain: -0.125; exang=no exercise angina: -0.120; sex=male: +0.072
+H51,"age (years): 61
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 134
+serum cholesterol (mg/dl): 234
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 145
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 2.6
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: normal",NO DISEASE,0.55,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.19)
+ST depression > 1.80  ->  towards DISEASE  (weight 0.14)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.13)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.11)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.06)",thal=normal: -0.190; oldpeak > 1.80: +0.141; ca=2 vessels: +0.128; exang=no exercise angina: -0.111; slope=flat: +0.060
+H52,"age (years): 57
+sex: male
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 124
+serum cholesterol (mg/dl): 261
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 141
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.3
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",NO DISEASE,0.81,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+chest pain type=atypical angina  ->  towards NO DISEASE  (weight 0.10)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.06)",ca=0 vessels: -0.224; thal=reversible defect: +0.186; exang=no exercise angina: -0.119; cp=atypical angina: -0.099; slope=upsloping: -0.062
+H53,"age (years): 64
+sex: female
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 303
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 122
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 2
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: normal",DISEASE,0.79,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.16)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+max heart rate achieved <= 136.00  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.09)",thal=normal: -0.184; ca=2 vessels: +0.159; cp=asymptomatic: +0.157; thalach <= 136.00: +0.101; slope=flat: +0.086
+H54,"age (years): 54
+sex: male
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 150
+serum cholesterol (mg/dl): 232
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 165
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 1.6
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",NO DISEASE,0.68,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.19)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.13)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+sex=male  ->  towards DISEASE  (weight 0.07)",ca=0 vessels: -0.221; thal=reversible defect: +0.190; cp=non-anginal pain: -0.130; exang=no exercise angina: -0.118; sex=male: +0.068
+H55,"age (years): 58
+sex: female
+chest pain type: atypical angina
+resting blood pressure (mm Hg): 136
+serum cholesterol (mg/dl): 319
+fasting blood sugar: fasting sugar > 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 152
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: normal",NO DISEASE,0.76,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.19)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.13)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.11)
+chest pain type=atypical angina  ->  towards NO DISEASE  (weight 0.10)
+ST depression <= 0.00  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.190; ca=2 vessels: +0.132; exang=no exercise angina: -0.114; cp=atypical angina: -0.100; oldpeak <= 0.00: -0.077
+H56,"age (years): 46
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 140
+serum cholesterol (mg/dl): 311
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 120
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.8
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 2 vessels
+thallium stress test: reversible defect",DISEASE,0.97,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.20)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.15)
+major vessels coloured by fluoroscopy=2 vessels  ->  towards DISEASE  (weight 0.14)
+ST depression > 1.60  ->  towards DISEASE  (weight 0.12)
+exercise-induced angina=exercise angina  ->  towards DISEASE  (weight 0.09)",thal=reversible defect: +0.198; cp=asymptomatic: +0.147; ca=2 vessels: +0.139; oldpeak > 1.60: +0.120; exang=exercise angina: +0.087
+H57,"age (years): 48
+sex: female
+chest pain type: non-anginal pain
+resting blood pressure (mm Hg): 130
+serum cholesterol (mg/dl): 275
+fasting blood sugar: fasting sugar <= 120
+resting ECG: normal ECG
+max heart rate achieved: 139
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0.2
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.96,"major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.22)
+thallium stress test=normal  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=non-anginal pain  ->  towards NO DISEASE  (weight 0.12)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.12)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.06)",ca=0 vessels: -0.219; thal=normal: -0.190; cp=non-anginal pain: -0.124; exang=no exercise angina: -0.123; slope=upsloping: -0.064
+H58,"age (years): 59
+sex: male
+chest pain type: typical angina
+resting blood pressure (mm Hg): 178
+serum cholesterol (mg/dl): 270
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 145
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 4.2
+slope of peak exercise ST: downsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: reversible defect",DISEASE,0.67,"thallium stress test=reversible defect  ->  towards DISEASE  (weight 0.25)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+ST depression > 1.60  ->  towards DISEASE  (weight 0.13)
+exercise-induced angina=no exercise angina  ->  towards NO DISEASE  (weight 0.07)
+sex=male  ->  towards DISEASE  (weight 0.06)",thal=reversible defect: +0.248; ca=0 vessels: -0.187; oldpeak > 1.60: +0.135; exang=no exercise angina: -0.068; sex=male: +0.056
+H59,"age (years): 59
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 138
+serum cholesterol (mg/dl): 271
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 182
+exercise-induced angina: no exercise angina
+ST depression (exercise vs rest): 0
+slope of peak exercise ST: upsloping
+major vessels coloured by fluoroscopy: 0 vessels
+thallium stress test: normal",NO DISEASE,0.79,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.24)
+major vessels coloured by fluoroscopy=0 vessels  ->  towards NO DISEASE  (weight 0.19)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.14)
+slope of peak exercise ST=upsloping  ->  towards NO DISEASE  (weight 0.08)
+ST depression <= 0.00  ->  towards NO DISEASE  (weight 0.08)",thal=normal: -0.239; ca=0 vessels: -0.188; cp=asymptomatic: +0.144; slope=upsloping: -0.085; oldpeak <= 0.00: -0.079
+H60,"age (years): 67
+sex: male
+chest pain type: asymptomatic
+resting blood pressure (mm Hg): 160
+serum cholesterol (mg/dl): 286
+fasting blood sugar: fasting sugar <= 120
+resting ECG: LV hypertrophy
+max heart rate achieved: 108
+exercise-induced angina: exercise angina
+ST depression (exercise vs rest): 1.5
+slope of peak exercise ST: flat
+major vessels coloured by fluoroscopy: 3 vessels
+thallium stress test: normal",DISEASE,0.91,"thallium stress test=normal  ->  towards NO DISEASE  (weight 0.18)
+chest pain type=asymptomatic  ->  towards DISEASE  (weight 0.16)
+max heart rate achieved <= 136.00  ->  towards DISEASE  (weight 0.10)
+slope of peak exercise ST=flat  ->  towards DISEASE  (weight 0.08)
+sex=male  ->  towards DISEASE  (weight 0.08)",thal=normal: -0.182; cp=asymptomatic: +0.162; thalach <= 136.00: +0.098; slope=flat: +0.084; sex=male: +0.082

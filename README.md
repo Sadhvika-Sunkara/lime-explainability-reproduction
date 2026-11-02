@@ -1,115 +1,107 @@
-# Reproducing and Extending LIME: Local Interpretable Model-Agnostic Explanations
+# Reproducing and Extending LIME (Ribeiro et al., KDD 2016)
 
-This repository contains the code and supporting evidence for a semester-long reproducibility
-project undertaken for **COMP8240 – Applications of Data Science**, Macquarie University
-(Session 2, 2026).
+COMP8240 Applications of Data Science, Macquarie University — final project, Sadhvika Sunkara (48768111)
 
-The project reproduces and extends the work of:
+This repository reproduces the two simulated-user experiments of
+[“Why Should I Trust You?”: Explaining the Predictions of Any Classifier](https://arxiv.org/abs/1602.04938)
+(Ribeiro, Singh & Guestrin, KDD 2016) and extends them to new data:
 
-> Marco Tulio Ribeiro, Sameer Singh, and Carlos Guestrin. 2016.
-> ["Why Should I Trust You?": Explaining the Predictions of Any Classifier](https://dl.acm.org/doi/10.1145/2939672.2939778).
-> In *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and
-> Data Mining (KDD 2016)*, pages 1135–1144.
+| | Original data (replication) | New data |
+|---|---|---|
+| **§5.2 Faithfulness** — recall of a model's true features | Books, DVDs | IMDB (new text domain), UCI Heart Disease (tabular) |
+| **§5.3 Trust** — F1 of deciding whether to trust a prediction | Books, DVDs × LR / NN / RF / SVM | IMDB, Heart × LR / NN / RF / SVM |
+| **Human trust judgements** | — | 60 Heart Disease predictions + LIME explanations rated by 3 people and an LLM judge |
 
-which introduced **LIME** (Local Interpretable Model-Agnostic Explanations), a technique for
-explaining individual predictions of any black-box classifier by fitting a simple, interpretable
-model to the local neighbourhood of a specific prediction.
+The report (ACL format) is in [`report/`](report/) and the compiled PDF is `report/main.pdf`.
 
-The full project proposal (submitted as Assessment Task #1) describes the wider plan: applying
-LIME to five new datasets not used in the original paper, and designing an LLM-as-judge
-evaluation protocol to validate against human trust judgements. This repository currently holds
-the **feasibility-check stage** of that project — confirming that the official LIME
-implementation runs correctly and reproduces a result consistent with the original paper's
-described phenomenon.
-
-## What this repository demonstrates
-
-The original paper motivates LIME partly through the observation that classifiers can achieve
-good accuracy for the wrong reasons — relying on spurious, "untrustworthy" features rather than
-genuine signal (their canonical example is an image classifier that learned to detect snow in
-the background rather than wolves). `lime_test.py` reproduces an analogous phenomenon on text
-data: a classifier trained on part of the 20 Newsgroups dataset that ends up relying on
-email-header artefacts (e.g. `Host`, `Posting`, `NNTP`) rather than genuine topical content —
-exactly the kind of untrustworthy-feature reliance the original paper's evaluation is designed to
-surface.
-
-## Repository contents
-
-| File | Description |
-|---|---|
-| `lime_test.py` | Confirms the official `lime` package installs and runs correctly, and reproduces the untrustworthy-feature phenomenon described above. |
-| `README.md` | This file. |
-
-## What `lime_test.py` does
-
-1. Loads the **20 Newsgroups** dataset (`sklearn.datasets.fetch_20newsgroups`), restricted to the
-   `alt.atheism` and `soc.religion.christian` categories — the same "Christianity vs. Atheism"
-   subset used in the original paper's primary text-classification experiments.
-2. Vectorises the raw text with **TF-IDF**.
-3. Trains a classifier (Random Forest) on the vectorised training split and evaluates it with an
-   **F1 score** on the held-out test split.
-4. Wraps the trained classifier with LIME's `LimeTextExplainer`.
-5. Generates a local explanation for an individual test-set prediction, showing which words most
-   influenced the model's classification for that specific document.
-
-## How to run it
+## Quick start
 
 ```bash
-pip install lime scikit-learn numpy
-python lime_test.py
+git clone https://github.com/Sadhvika-Sunkara/lime-explainability-reproduction
+cd lime-explainability-reproduction
+python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python scripts/get_data.py                             # Books/DVDs + IMDB (~100 MB); Heart data is included
+bash run_all.sh                                        # every experiment + tables (~2.5 h on 2 CPU cores)
 ```
 
-This was originally run in a GitHub Codespaces cloud development environment as part of the
-Week-2/3 reproducibility exercise for this unit, and reproduces without modification in any
-standard Python 3 environment with the packages above installed.
+To run a single setting (each takes 1–15 minutes):
 
-## Results / evidence of the run
-
-The run confirms two things: (1) the official `lime` implementation installs and executes
-end-to-end without modification, and (2) the resulting explanation for several test predictions
-relies heavily on email-header tokens (`Host`, `Posting`, `NNTP`, etc.) rather than genuine
-topical words — directly illustrating the untrustworthy-feature phenomenon the original paper's
-evaluation is built around, and matching what the project proposal (Section 3, "Explanation of
-Evaluation") describes.
-
-**Actual console output from the run:**
-
-```
-$ pip install lime scikit-learn numpy
-$ python lime_test.py
-
-F1 score: 0.9252336448598131
-Document id: 83
-Probability(christian) = 0.478
-True class: alt.atheism
-[(np.str_('Host'), -0.14260288942048174), (np.str_('Posting'), -0.12330214354154904),
- (np.str_('NNTP'), -0.09671705079974), (np.str_('edu'), -0.031143181056092584),
- (np.str_('University'), 0.0214992733029205), (np.str_('an'), -0.011952164022704985)]
+```bash
+python src/run_faithfulness.py --dataset books               # books | dvd | imdb
+python src/run_trust.py --dataset dvd --algorithm svm        # logreg | neighbors | random_forest | svm
+python src/run_heart.py --experiment faithfulness
+python src/run_heart.py --experiment trust --algorithm random_forest
+python src/make_tables.py                                    # results/*.json -> report/generated/*.tex
 ```
 
-This confirms the phenomenon described above: for this held-out test document, the top three
-features driving the model's prediction are `Host`, `Posting`, and `NNTP` — all email-header
-artefacts, not genuine content words — with the classifier itself still achieving a strong
-F1 score of 0.925 on the held-out split. This is exactly the kind of untrustworthy-feature
-reliance the original paper's evaluation is designed to surface.
+Each script writes one JSON file to `results/`. Pass `--max-test 20` (text) or `--num-samples 2000` for a quick smoke test.
 
-## Relationship to the wider project
+## Repository layout
 
-This feasibility check is Phase 1 of the four-phase plan described in the project proposal:
+```
+src/
+  explainers.py           Python 3 port of the authors' LIME / Parzen / Greedy / Random explainers
+                          (+ FastRBFSVC: exact closed-form SVM probabilities for LIME samples)
+  data.py                 loaders; the paper's 1600/400 split protocol for every text dataset
+  common.py               vectoriser, the paper's classifier settings, Parzen bandwidths
+  run_faithfulness.py     §5.2 on text (port of evaluate_explanations.py)
+  run_trust.py            §5.3 on text (port of data_trusting.py)
+  heart_common.py         tabular versions of the four explainers (official `lime` package for LIME)
+  run_heart.py            §5.2 and §5.3 on Heart Disease (5-fold cross-fitting)
+  build_annotation_set.py builds the 60-item human-annotation set and Excel sheet
+  llm_judge.py            LLM-as-judge on the same items (OpenAI API)
+  analyze_annotations.py  Krippendorff's alpha, weighted kappa, AUC, LLM-vs-human agreement
+  ablation_parzen_sigma.py  Parzen bandwidth ablation (explains the Parzen replication gap)
+  make_tables.py          all LaTeX tables / figures in the report
+scripts/get_data.py       downloads the public datasets
+tests/test_fast_svm.py    checks FastRBFSVC against scikit-learn
+results/                  one JSON per experiment (the numbers in the report)
+annotation/               annotation sheet, items, answer key, completed sheets, LLM judgements
+report/                   LaTeX source (ACL template), generated tables, PDF
+```
 
-1. **Reproduce** the original paper's core quantitative results (fidelity/recall and
-   simulated-trust experiments) on 20 Newsgroups — *in progress, this repository*.
-2. **Apply LIME to new datasets** not used in the original paper (Amazon/IMDB reviews, Fake and
-   Real News, Credit Card Fraud Detection, Jigsaw Toxic Comment Classification, Heart Disease).
-3. **Construct a new "explanation trust" dataset** (~150–200 predictions from a Heart Disease
-   classifier) with human and LLM-as-judge trust judgements.
-4. **Consolidate results** and prepare the final report.
+## Why a port, not the original code
 
-Subsequent phases and their code will be added to this repository as the project progresses
-through the semester.
+The authors' [lime-experiments](https://github.com/marcotcr/lime-experiments) code pins Python 2.7,
+numpy 1.14, scipy 0.17 and scikit-learn 0.18, none of which install on a current system, and it
+calls APIs that have since been removed (`sklearn.cross_validation`, `print` statements). `src/explainers.py`
+re-implements the same algorithms with the same hyperparameters (N = 15,000 samples, kernel width
+ρ = 25 on 100 × cosine distance, K-LASSO via the LARS path, the authors' Parzen bandwidths), and the
+experiment scripts keep the original classifier settings, seeds, simulated-user rules and metric.
+The deviations are listed in §4 of the report:
+raw-text tokenisation instead of the no-longer-linked `processed_acl` files, a bag-of-words RF
+(as in the released code), and vectorised and closed-form speed-ups that do not change any computation.
 
-## Author
+## Data
 
-**Sadhvika Sunkara** (Student ID: 48768111)
-Macquarie University — COMP8240, Session 2, 2026
-`sadhvika.sunkara@student.mq.edu.au`
+| Dataset | Source | Licence | In repo? |
+|---|---|---|---|
+| Multi-Domain Sentiment (Books, DVDs) | Blitzer et al. 2007, [JHU](https://www.cs.jhu.edu/~mdredze/datasets/sentiment/) | research use | no — `scripts/get_data.py` |
+| IMDB 50k reviews | Maas et al. 2011, [Stanford](https://ai.stanford.edu/~amaas/data/sentiment/) | research use | no — `scripts/get_data.py` |
+| Heart Disease (Cleveland) | Janosi et al. 1988, [UCI](https://archive.ics.uci.edu/dataset/45/heart+disease) | CC BY 4.0 | yes, `data/raw/` |
+| Explanation-trust annotations (new) | this project | CC BY 4.0 | yes, `annotation/` |
+
+## Annotation protocol (new dataset)
+
+`src/build_annotation_set.py` picks 20 incorrect and 40 correct cross-fitted Random Forest predictions
+(seed 1) and writes `annotation/annotation_sheet.xlsx`, which has a participant-information/consent page and one row per
+item: patient record, prediction + confidence, LIME top-5 explanation, and two questions,
+trust (1–5) and whether the explanation makes sense (Yes/No). Raters never see the true label (`annotation/answer_key.csv`).
+Completed sheets go in `annotation/responses/annotator_{A,B,C}.xlsx`; then:
+
+```bash
+export OPENAI_API_KEY=...            # Windows PowerShell: $env:OPENAI_API_KEY="..."
+python src/llm_judge.py --model gpt-4o-mini --repeats 3
+python src/analyze_annotations.py    # -> results/annotation_analysis.json + report macros
+```
+
+## Environment used for the reported results
+
+Python 3.13.18 on Linux x86-64 (2 CPU cores, no GPU); package versions pinned in `requirements.txt`.
+Earlier development ran on GitHub Codespaces (Python 3.12) and Windows 11 (Python 3.13).
+
+## Citation
+
+Ribeiro, M. T., Singh, S., & Guestrin, C. (2016). “Why Should I Trust You?”: Explaining the Predictions
+of Any Classifier. *KDD 2016*, 1135–1144. https://doi.org/10.1145/2939672.2939778

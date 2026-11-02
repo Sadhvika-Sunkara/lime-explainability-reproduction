@@ -1,0 +1,10 @@
+# Versions used for every result in results/ (Python 3.13.18, Linux x86-64, CPU only)
+lime==0.2.0.1
+scikit-learn==1.9.1
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.5
+matplotlib==3.11.2
+openpyxl==3.1.5
+# only for the LLM judge (src/llm_judge.py)
+openai>=1.0

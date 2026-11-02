@@ -1,0 +1,26 @@
+Parsed 1000 positive and 1000 negative reviews from sorted_data_acl/books
+Vocabulary size: 6434  |  Train docs: 1600  |  Test docs used: 80  |  Base test accuracy on subset: 0.812
+Computing LIME explanations for 80 instances (num_samples=1000)...
+  ...10/80 done
+  ...20/80 done
+  ...30/80 done
+  ...40/80 done
+  ...50/80 done
+  ...60/80 done
+  ...70/80 done
+  ...80/80 done
+
+Average flipped predictions per round: 7.3 +- 3.7 (out of 80)
+
+=== Baseline rule (any untrustworthy word in top-K explanation) ===
+  mistrust_precision: 0.096 +- 0.048
+  mistrust_recall: 1.000 +- 0.000
+  mistrust_f1: 0.172 +- 0.078
+
+=== Paper's rule (local linear model, intercept + weights) ===
+  mistrust_precision: 0.797 +- 0.218
+  mistrust_recall: 0.617 +- 0.105
+  mistrust_f1: 0.675 +- 0.132
+  trust_precision: 0.963 +- 0.019
+  trust_recall: 0.986 +- 0.012
+  trust_f1: 0.975 +- 0.009

@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering\small
+\resizebox{\columnwidth}{!}{\input{generated/table_recall_new}}
+\caption{Faithfulness on new data: recall (\%) of gold features. Same protocol as Table~\ref{tab:recallrepl}. Heart uses $K{=}5$ of 13 features, so Random's expected recall is about 38\%.}
+\label{tab:recallnew}
+\end{table}
+
+\begin{table*}[t]
+\centering\small
+\resizebox{0.8\textwidth}{!}{\input{generated/table_trust_new}}
+\caption{Trust on new data: F1 (\%) of the trustworthy class, same protocol as Table~\ref{tab:trustrepl}. Heart: 3 of 13 features untrustworthy, $K{=}5$, 297 patients via 5-fold cross-fitting. All LIME--baseline differences are significant ($p<10^{-4}$). On Heart, Parzen is significantly \emph{better} than LIME.}
+\label{tab:trustnew}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.85\textwidth]{generated/fig_trust_margin.pdf}
+\caption{LIME's margin over the best of the three baselines in the trust experiment (F1 points). Grey bars are the paper's Table~1, dark bars are ours. The margin is preserved in every replicated setting and on IMDB, and turns negative on tabular Heart data.}
+\label{fig:margin}
+\end{figure*}
+
+\subsection{Simulated-user experiments}
+\paragraph{New text domain (IMDB).} LIME generalises to movie reviews. In the trust experiment its F1 is \IMDBLimeTrustRange{} (Table~\ref{tab:trustnew}), which is within the range of the replication (\ReplTrustRange{}), and the method ordering is unchanged. Parzen (\IMDBParzenTrustRange{}) and Greedy behave as on Books/DVDs. For faithfulness (Table~\ref{tab:recallnew}), LIME recovers \IMDBTreeRecall{}\% of the tree's gold words, matching DVDs. For the sparse LR it recovers \IMDBLRRecall{}\%, about 5 points below Books/DVDs. IMDB reviews are 35\% longer, so each document has more candidate words competing for the same $K{=}10$ slots, and the sampler drops a smaller fraction of the relevant words in each perturbation. Even so, LIME's recall is 32 points above the next-best explainer.
+
+\paragraph{New modality (Heart Disease).} The tabular results diverge from the paper's conclusions in two ways. \emph{Faithfulness:} LIME recovers \HeartLRRecall{}\% of the sparse LR's gold features but only \HeartTreeRecall{}\% of the decision tree's, against 89.7--95.6\% on the three text datasets. The tabular explainer discretises continuous features into training-set quartiles and perturbs by resampling bins, so a split in the tree at, say, \texttt{oldpeak}\,${\le}\,0.7$ can fall inside a quartile. Perturbations then rarely cross the threshold and the feature looks locally irrelevant. On text there is no such mismatch, because removing a word is exactly the operation a word-presence split tests. \emph{Trust:} Parzen (\HeartParzenTrustRange{}) significantly outperforms LIME (\HeartLimeTrustRange{}) for all four classifiers (Figure~\ref{fig:margin}). Table~\ref{tab:prf} shows why: LIME's precision stays high (92--96\%) but its recall falls to 82--84\%, so it distrusts too many trustworthy predictions. LIME's interpretable features for tabular data mean ``the patient is in bin $b$'', and the trust rule removes a feature by subtracting its weight, which is equivalent to moving the patient \emph{out of} that bin. The oracle instead resets the feature to its training median or mode, and for 45\% of (patient, feature) pairs that leaves the patient in the same bin (37\% exactly unchanged, e.g.\ \emph{sex = male} is also the mode). LIME therefore predicts a change where none happens. Our Parzen adaptation measures the change towards exactly that baseline, so part of its advantage comes from the evaluation design. That is itself the finding: LIME's tabular explanations describe deviation from the training distribution, not from a particular reference value, and a user who reads ``removing this feature'' literally will be misled. The paper's text-only evaluation could not reveal this.
+
+\subsection{Human and LLM trust judgements}
+\label{sec:humanres}
+\input{sections/annotation_results}
+
+\paragraph{How this evaluation differs from the replication.} The simulated-user experiments define an untrustworthy prediction as one that depends on randomly designated ``untrustworthy'' features, and the simulated user applies a fixed rule to the explanation. In the annotation study, ground truth is whether the prediction is actually correct, and the users are people (or an LLM) who bring their own prior beliefs about heart disease. The paper's human studies were closer to this but used text classifiers and Mechanical Turk workers. Ours applies the question to tabular clinical data, the setting in which the simulated results above suggest LIME is least reliable.
