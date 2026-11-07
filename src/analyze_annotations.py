@@ -147,6 +147,14 @@ def main(resp_dir=os.path.join(ANN, 'responses'), out_prefix=''):
     resid = h_mean - np.polyval(np.polyfit(conf, h_mean, 1), conf)
     out['auc_human_trust_residual_after_confidence'] = auc(resid)
     out['p_human_trust_residual'] = float(mannwhitneyu(resid[correct == 1], resid[correct == 0]).pvalue)
+    # robustness: annotator A is the author (who designed the study); repeat without her
+    if 'A' in names and len(names) > 2:
+        keep = [i for i, h in enumerate(names) if h != 'A']
+        T2 = T[keep]; m2 = np.nanmean(T2, 0)
+        r2 = m2 - np.polyval(np.polyfit(conf, m2, 1), conf)
+        out['without_author'] = {'alpha_trust': krippendorff_alpha(T2, 'ordinal', [1, 2, 3, 4, 5]),
+                                 'auc_trust': auc(m2), 'auc_residual_after_confidence': auc(r2),
+                                 'spearman_trust_vs_confidence': float(spearmanr(m2, conf)[0])}
     out['spearman_human_trust_vs_lime_r2'] = float(spearmanr(h_mean, key.lime_local_r2, nan_policy='omit')[0])
     out['spearman_human_trust_vs_confidence'] = float(spearmanr(h_mean, np.maximum(key.p_disease, 1 - key.p_disease), nan_policy='omit')[0])
     if 'trust_llm' in merged:
@@ -188,6 +196,10 @@ MACROS = {  # macro name -> (key path in analysis json, format)
     'MeanTrustHuman': (('mean_trust_human',), '{:.2f}'),
     'MeanTrustLLM': (('mean_trust_llm',), '{:.2f}'),
     'LLMModel': (('llm_model',), '{}'),
+    'AlphaNoAuthor': (('without_author', 'alpha_trust'), '{:.2f}'),
+    'AUCNoAuthor': (('without_author', 'auc_trust'), '{:.2f}'),
+    'AUCResidNoAuthor': (('without_author', 'auc_residual_after_confidence'), '{:.2f}'),
+    'AUCAuthor': (('auc_trust_detects_correct', 'A'), '{:.2f}'),
     'AUCConf': (('auc_model_confidence_detects_correct',), '{:.2f}'),
     'AUCResid': (('auc_human_trust_residual_after_confidence',), '{:.2f}'),
     'PResid': (('p_human_trust_residual',), '{:.2f}'),
