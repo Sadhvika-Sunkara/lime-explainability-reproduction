@@ -19,23 +19,36 @@ The report (ACL format) is in [`report/`](report/) and the compiled PDF is `repo
 ```bash
 git clone https://github.com/Sadhvika-Sunkara/lime-explainability-reproduction
 cd lime-explainability-reproduction
-python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python scripts/get_data.py                             # Books/DVDs + IMDB (~100 MB); Heart data is included
-bash run_all.sh                                        # every experiment + tables (~2.5 h on 2 CPU cores)
+pip install -r requirements.txt          # Python 3.11+ (results were produced with 3.13)
+python scripts/get_data.py               # downloads Books/DVDs (raw + processed_acl) and IMDB, ~100 MB
 ```
 
-To run a single setting (each takes 1–15 minutes):
+Then pick one of three levels:
 
-```bash
-python src/run_faithfulness.py --dataset books_acl           # books_acl | dvd_acl (authors' input) | books | dvd (raw text) | imdb
-python src/run_trust.py --dataset dvd --algorithm svm        # logreg | neighbors | random_forest | svm
-python src/run_heart.py --experiment faithfulness
-python src/run_heart.py --experiment trust --algorithm random_forest
-python src/make_tables.py                                    # results/*.json -> report/generated/*.tex
-```
+| Goal | Command | Time (laptop CPU) | OpenAI key? |
+|---|---|---|---|
+| Rebuild every table and figure from the saved results | `python src/make_tables.py` and `python src/analyze_annotations.py` | seconds | no |
+| Check that every pipeline runs end to end (small settings, writes to `results_quick/`) | `bash run_quick.sh` | ~5 min | no |
+| Re-run every experiment in the report (overwrites `results/`) | `bash run_all.sh` | ~4 h on 2 cores | no |
 
-Each script writes one JSON file to `results/`. Pass `--max-test 20` (text) or `--num-samples 2000` for a quick smoke test.
+**No OpenAI key is needed for anything above.** The only step that calls an API is the LLM judge
+(`src/llm_judge.py`); its outputs are saved in `annotation/llm_judgements.csv`, so the analysis runs from that file.
+On Windows, run the `.sh` scripts from Git Bash, or run the Python commands inside them one by one.
+
+### Which file produces which part of the report
+
+| Report item | Result files (`results/`) | Produced by |
+|---|---|---|
+| Table 1: faithfulness replication | `faithfulness_books_acl.json`, `faithfulness_dvd_acl.json` | `src/run_faithfulness.py --dataset books_acl` / `dvd_acl` |
+| Table 2: trust replication | `trust_{books,dvd}_acl_{logreg,neighbors,random_forest,svm}.json` | `src/run_trust.py` |
+| Table 3: raw text vs. authors' input | the above plus `faithfulness_{books,dvd}.json`, `trust_{books,dvd}_*.json` | `src/run_faithfulness.py` / `run_trust.py --dataset books` / `dvd` |
+| §4 ablations (Parzen bandwidth, tree depth, L1 solver) | `ablation_parzen_sigma.json`, `faithfulness_*_acl_depth10.json`, `ablation_l1_solver.json` | `src/ablation_parzen_sigma.py`, `run_faithfulness.py --tree-max-depth 10`, `src/ablation_l1_solver.py` |
+| Tables 4–5, Figure 2: new data | `faithfulness_{imdb,heart}.json`, `trust_{imdb,heart}_*.json` | `src/run_faithfulness.py --dataset imdb`, `src/run_heart.py` |
+| §6.2: human and LLM ratings | `annotation_analysis.json`, `annotations_merged.csv` | `src/analyze_annotations.py` |
+| Table 7 (appendix): LIME precision/recall | the trust files above | `src/make_tables.py` |
+
+All LaTeX tables and numbers quoted in the text are generated into `report/generated/` by
+`src/make_tables.py` and `src/analyze_annotations.py`; none are typed by hand.
 
 ## Repository layout
 
@@ -52,7 +65,8 @@ src/
   build_annotation_set.py builds the 60-item human-annotation set and Excel sheet
   llm_judge.py            LLM-as-judge on the same items (OpenAI API)
   analyze_annotations.py  Krippendorff's alpha, weighted kappa, AUC, LLM-vs-human agreement
-  ablation_parzen_sigma.py  Parzen bandwidth ablation (explains the Parzen replication gap)
+  ablation_parzen_sigma.py  Parzen bandwidth ablation (raw text)
+  ablation_l1_solver.py   L1 solver / C ablation for the Books sparse-LR recall gap
   make_tables.py          all LaTeX tables / figures in the report
 scripts/get_data.py       downloads the public datasets
 tests/test_fast_svm.py    checks FastRBFSVC against scikit-learn

@@ -11,6 +11,7 @@ for d in books_acl dvd_acl books dvd imdb; do
   done
 done
 python src/ablation_parzen_sigma.py
+python src/ablation_l1_solver.py
 for d in books_acl dvd_acl; do python src/run_faithfulness.py --dataset $d --tree-max-depth 10; done
 python src/run_heart.py --experiment faithfulness
 for a in logreg neighbors random_forest svm; do

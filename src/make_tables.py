@@ -149,32 +149,40 @@ def prf_latex():
 
 def figure_gap():
     """LIME's margin over the best baseline, per setting (trust F1)."""
-    labels, ours, paper = [], [], []
+    labels, groups, ours, paper = [], [], [], []
+    DN = {'books': 'Books', 'dvd': 'DVDs', 'imdb': 'IMDB', 'heart': 'Heart'}
     for d in ['books', 'dvd', 'imdb', 'heart']:
         for a in ALGS:
             r = load(f'trust_{REPL.get(d, d)}_{a}.json')
             if not r:
                 continue
-            labels.append(f"{ {'books': 'Books', 'dvd': 'DVDs', 'imdb': 'IMDB', 'heart': 'Heart'}[d] }\n{ALG_SHORT[a]}")
+            labels.append(ALG_SHORT[a]); groups.append(DN[d])
             R = r['results']
             ours.append(100 * R['LIME']['f1'] - 100 * max(R[e]['f1'] for e in EXPL if e != 'LIME'))
             paper.append(PAPER_TRUST[d][a][3] - max(PAPER_TRUST[d][a][:3]) if d in PAPER_TRUST else np.nan)
     if not labels:
         return
     x = np.arange(len(labels))
-    fig, ax = plt.subplots(figsize=(7.2, 2.4))
-    ax.bar(x - .2, paper, .4, label='Paper (Table 1)', color='#9aa5b1')
+    fig, ax = plt.subplots(figsize=(7.2, 3.0))
+    ax.bar(x - .2, paper, .4, label='Paper', color='#9aa5b1')
     ax.bar(x + .2, ours, .4, label='Ours', color='#1f4e79')
     ax.axhline(0, color='black', lw=.6)
-    ax.set_xticks(x); ax.set_xticklabels(labels, fontsize=7)
-    ax.set_ylabel('LIME F1 $-$ best\nbaseline F1 (pts)', fontsize=8)
-    ax.tick_params(axis='y', labelsize=7)
-    for s in ['top', 'right']:
-        ax.spines[s].set_visible(False)
-    ax.legend(fontsize=7, frameon=False, loc='lower left')
+    ax.set_xticks(x); ax.set_xticklabels(labels, fontsize=9)
+    ax.set_xlim(-.6, len(labels) - .4)
+    # dataset names centred under each group of four classifiers
+    for g in dict.fromkeys(groups):
+        idx = [i for i, gg in enumerate(groups) if gg == g]
+        ax.text(np.mean(idx), -0.16, g, transform=ax.get_xaxis_transform(), ha='center', va='top', fontsize=10)
+        if idx[0] > 0:
+            ax.axvline(idx[0] - .5, color='#cccccc', lw=.6, zorder=-2)
+    ax.set_ylabel('LIME F1 $-$ best\nbaseline F1 (pts)', fontsize=10)
+    ax.tick_params(axis='y', labelsize=9)
+    for s_ in ['top', 'right']:
+        ax.spines[s_].set_visible(False)
+    ax.legend(fontsize=9, frameon=False, loc='lower left')
     n_rep = sum(1 for p in paper if not np.isnan(p))
-    ax.axvspan(n_rep - .5, len(labels) - .5, color='#f2f2f2', zorder=-1)
-    ax.text(n_rep + (len(labels) - n_rep) / 2 - .5, ax.get_ylim()[1] * .92, 'new data', ha='center', fontsize=7, style='italic')
+    ax.axvspan(n_rep - .5, len(labels) - .4, color='#f2f2f2', zorder=-3)
+    ax.text(n_rep + (len(labels) - n_rep) / 2 - .5, ax.get_ylim()[1] * .92, 'new data', ha='center', fontsize=9, style='italic')
     fig.tight_layout()
     fig.savefig(os.path.join(GEN, 'fig_trust_margin.pdf'))
     fig.savefig(os.path.join(GEN, 'fig_trust_margin.png'), dpi=200)

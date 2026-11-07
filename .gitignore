@@ -13,3 +13,4 @@ report/*.out
 report/*.fdb_latexmk
 report/*.fls
 *.tar.gz
+results_quick/

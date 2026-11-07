@@ -7,7 +7,8 @@ from sklearn import ensemble, linear_model, neighbors, svm, tree
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import cross_val_predict
 
-RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'results')
+RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..',
+                       os.environ.get('LIME_RESULTS_DIR', 'results'))  # run_quick.sh writes to results_quick/
 
 # Parzen bandwidths published in the authors' code (evaluate_explanations.py
 # and data_trusting.py). For datasets they did not use, sigma is chosen by the

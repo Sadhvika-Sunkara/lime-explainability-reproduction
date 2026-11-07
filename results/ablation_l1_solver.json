@@ -1,0 +1,105 @@
+{
+  "books_acl": {
+    "paper_rule_liblinear": {
+      "C": 0.03,
+      "nonzero": 6,
+      "n_scored": 312,
+      "lime_recall": 0.8512286324786325,
+      "acc": 0.58
+    },
+    "paper_rule_saga": {
+      "C": 0.03,
+      "nonzero": 6,
+      "n_scored": 312,
+      "lime_recall": 0.9762286324786325,
+      "acc": 0.6275
+    },
+    "paper_rule_liblinear_noint": {
+      "C": 0.03,
+      "nonzero": 6,
+      "n_scored": 312,
+      "lime_recall": 0.8512286324786325,
+      "acc": 0.58
+    },
+    "fixed_C_0.04": {
+      "C": 0.04,
+      "nonzero": 18,
+      "n_scored": 369,
+      "lime_recall": 0.8310864158425134,
+      "acc": 0.6875
+    },
+    "fixed_C_0.05": {
+      "C": 0.05,
+      "nonzero": 28,
+      "n_scored": 392,
+      "lime_recall": 0.837259354576084,
+      "acc": 0.72
+    },
+    "fixed_C_0.07": {
+      "C": 0.07,
+      "nonzero": 41,
+      "n_scored": 395,
+      "lime_recall": 0.8347085124629506,
+      "acc": 0.74
+    },
+    "fixed_C_0.1": {
+      "C": 0.1,
+      "nonzero": 74,
+      "n_scored": 399,
+      "lime_recall": 0.6984051772928626,
+      "acc": 0.75
+    }
+  },
+  "dvd_acl": {
+    "paper_rule_liblinear": {
+      "C": 0.03,
+      "nonzero": 11,
+      "n_scored": 369,
+      "lime_recall": 0.911388566266615,
+      "acc": 0.65
+    },
+    "paper_rule_saga": {
+      "C": 0.03,
+      "nonzero": 11,
+      "n_scored": 369,
+      "lime_recall": 0.911388566266615,
+      "acc": 0.6525
+    },
+    "paper_rule_liblinear_noint": {
+      "C": 0.03,
+      "nonzero": 11,
+      "n_scored": 369,
+      "lime_recall": 0.911388566266615,
+      "acc": 0.65
+    },
+    "fixed_C_0.04": {
+      "C": 0.04,
+      "nonzero": 16,
+      "n_scored": 376,
+      "lime_recall": 0.898353692702097,
+      "acc": 0.6825
+    },
+    "fixed_C_0.05": {
+      "C": 0.05,
+      "nonzero": 21,
+      "n_scored": 382,
+      "lime_recall": 0.8923721203171465,
+      "acc": 0.7025
+    },
+    "fixed_C_0.07": {
+      "C": 0.07,
+      "nonzero": 41,
+      "n_scored": 395,
+      "lime_recall": 0.774142113493028,
+      "acc": 0.7225
+    },
+    "fixed_C_0.1": {
+      "C": 0.1,
+      "nonzero": 68,
+      "n_scored": 397,
+      "lime_recall": 0.7366939645288169,
+      "acc": 0.755
+    }
+  },
+  "note": "LIME with N=5000 samples here (15000 in the main run); recall explained for the predicted label"
+}
