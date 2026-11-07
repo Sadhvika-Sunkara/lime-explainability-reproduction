@@ -55,7 +55,7 @@ def main():
     K = a.num_features
 
     tr, ytr, te, yte = load_text(a.dataset)
-    _, Xtr, Xte = vectorize(tr, te)
+    _, Xtr, Xte = vectorize(tr, te, lowercase=not a.dataset.endswith('_acl'))
     if a.max_test:
         Xte, yte = Xte[:a.max_test], yte[:a.max_test]
     np.random.seed(1)

@@ -4,6 +4,8 @@ Downloads the three public datasets into data/ (run once, ~100 MB):
   data/sorted_data_acl/{books,dvd}/{positive,negative}.review
         Multi-Domain Sentiment Dataset v1 (Blitzer, Dredze & Pereira, 2007)
         https://www.cs.jhu.edu/~mdredze/datasets/sentiment/domain_sentiment_data.tar.gz
+  data/processed_acl/{books,dvd}/{positive,negative}.review
+        the authors' pre-processed input (processed_acl.tar.gz, same page), used for the replication
   data/imdb/IMDB-Dataset.csv
         IMDB Large Movie Review Dataset (Maas et al., 2011), 50k reviews as one CSV
         (mirror of the Kaggle "IMDB Dataset of 50K Movie Reviews" file)
@@ -22,6 +24,7 @@ import zipfile
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 BLITZER = 'https://www.cs.jhu.edu/~mdredze/datasets/sentiment/domain_sentiment_data.tar.gz'
+BLITZER_ACL = 'https://www.cs.jhu.edu/~mdredze/datasets/sentiment/processed_acl.tar.gz'   # the authors' input
 IMDB = 'https://raw.githubusercontent.com/Ankit152/IMDB-sentiment-analysis/master/IMDB-Dataset.csv'
 UCI = 'https://archive.ics.uci.edu/static/public/45/heart+disease.zip'
 CLEVELAND_MD5 = '2d91a8ff69cfd9616aa47b59d6f843db'
@@ -37,6 +40,15 @@ def main():
     d = os.path.join(ROOT, 'sorted_data_acl')
     if not os.path.exists(os.path.join(d, 'dvd', 'positive.review')):
         with tarfile.open(fileobj=io.BytesIO(fetch(BLITZER))) as t:
+            for m in t.getmembers():
+                parts = m.name.split('/')
+                if len(parts) >= 3 and parts[-2] in ('books', 'dvd') and parts[-1] in ('positive.review', 'negative.review'):
+                    os.makedirs(os.path.join(d, parts[-2]), exist_ok=True)
+                    with open(os.path.join(d, parts[-2], parts[-1]), 'wb') as f:
+                        f.write(t.extractfile(m).read())
+    d = os.path.join(ROOT, 'processed_acl')
+    if not os.path.exists(os.path.join(d, 'dvd', 'positive.review')):
+        with tarfile.open(fileobj=io.BytesIO(fetch(BLITZER_ACL))) as t:
             for m in t.getmembers():
                 parts = m.name.split('/')
                 if len(parts) >= 3 and parts[-2] in ('books', 'dvd') and parts[-1] in ('positive.review', 'negative.review'):

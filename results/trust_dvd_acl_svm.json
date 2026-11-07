@@ -1,0 +1,52 @@
+{
+  "dataset": "dvd_acl",
+  "algorithm": "svm",
+  "num_samples": 15000,
+  "n_test": 400,
+  "test_accuracy": 0.8,
+  "parzen_sigma": 0.75,
+  "parzen_sigma_source": "paper",
+  "num_rounds": 100,
+  "percent_untrustworthy": 0.25,
+  "flipped_mean": 48.32,
+  "flipped_std": 11.79226865365609,
+  "explain_seconds": 338.5,
+  "results": {
+    "random": {
+      "precision": 0.9104879023109178,
+      "recall": 0.08279093036812765,
+      "f1": 0.1510550447402785,
+      "precision_std": 0.0569177182165151,
+      "recall_std": 0.022464233105374255,
+      "f1_std": 0.037955322069963764,
+      "f1_pvalue_vs_LIME": 2.074107854668239e-234
+    },
+    "parzen": {
+      "precision": 0.8839007457012391,
+      "recall": 0.7714838976535873,
+      "f1": 0.823581901029159,
+      "precision_std": 0.02898995441298063,
+      "recall_std": 0.032317485519071765,
+      "f1_std": 0.02706031475614494,
+      "f1_pvalue_vs_LIME": 1.684236651545848e-114
+    },
+    "greedy": {
+      "precision": 0.8863868886575351,
+      "recall": 0.3997828255876513,
+      "f1": 0.5427641398025727,
+      "precision_std": 0.033533316341524226,
+      "recall_std": 0.1031130177642531,
+      "f1_std": 0.10241696014629333,
+      "f1_pvalue_vs_LIME": 1.682935355706085e-98
+    },
+    "LIME": {
+      "precision": 0.9520859798304975,
+      "recall": 0.9779370549450437,
+      "f1": 0.9647504136389595,
+      "precision_std": 0.013352258738101289,
+      "recall_std": 0.00949338864407234,
+      "f1_std": 0.007223449779729596,
+      "f1_pvalue_vs_LIME": null
+    }
+  }
+}

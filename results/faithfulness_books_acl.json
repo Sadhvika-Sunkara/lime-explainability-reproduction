@@ -1,0 +1,49 @@
+{
+  "dataset": "books_acl",
+  "num_samples": 15000,
+  "n_test": 400,
+  "l1logreg": {
+    "C": 0.03000000000000004,
+    "n_nonzero_coef": 6,
+    "test_accuracy": 0.58,
+    "parzen_sigma": 2.0,
+    "parzen_sigma_source": "paper",
+    "n_scored": 312,
+    "mean_gold_size": 1.9615384615384615,
+    "seconds": 63.2,
+    "recall": {
+      "random": 0.203258547008547,
+      "parzen": 0.8394230769230768,
+      "greedy": 0.6027243589743589,
+      "LIME": 0.8512286324786325
+    },
+    "recall_std": {
+      "random": 0.35079919149647987,
+      "parzen": 0.2824873401750838,
+      "greedy": 0.4223107723104981,
+      "LIME": 0.22101428743082932
+    }
+  },
+  "tree": {
+    "depth": 49,
+    "test_accuracy": 0.67,
+    "parzen_sigma": 2.0,
+    "parzen_sigma_source": "paper",
+    "n_scored": 361,
+    "mean_gold_size": 1.4930747922437673,
+    "seconds": 68.9,
+    "recall": {
+      "random": 0.24330563250230838,
+      "parzen": 0.7077562326869805,
+      "greedy": 0.3714219759926131,
+      "LIME": 0.9411357340720221
+    },
+    "recall_std": {
+      "random": 0.3944119120776044,
+      "parzen": 0.35922719920875423,
+      "greedy": 0.440207228429407,
+      "LIME": 0.1596440226111059
+    }
+  },
+  "tree_max_depth": null
+}

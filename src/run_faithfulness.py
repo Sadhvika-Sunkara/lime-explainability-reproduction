@@ -55,10 +55,13 @@ def main():
     ap.add_argument('--dataset', required=True)
     ap.add_argument('--num-samples', type=int, default=15000)
     ap.add_argument('--max-test', type=int, default=None)
+    ap.add_argument('--tree-max-depth', type=int, default=None,
+                    help='ablation: depth-limited tree (paper text: <=10 features per prediction; '
+                         'its figure files are named "shallow_tree"). Default: unpruned, as in the released code.')
     a = ap.parse_args()
 
     tr, ytr, te, yte = load_text(a.dataset)
-    _, Xtr, Xte = vectorize(tr, te)
+    _, Xtr, Xte = vectorize(tr, te, lowercase=not a.dataset.endswith('_acl'))
     if a.max_test:
         Xte, yte = Xte[:a.max_test], yte[:a.max_test]
     out = {'dataset': a.dataset, 'num_samples': a.num_samples, 'n_test': Xte.shape[0]}
@@ -70,7 +73,7 @@ def main():
             gold_fn = lambda x: set(x.indices) & coef_nz
             info = {'C': c, 'n_nonzero_coef': len(coef_nz)}
         else:
-            clf = sktree.DecisionTreeClassifier(random_state=1).fit(Xtr, ytr)
+            clf = sktree.DecisionTreeClassifier(random_state=1, max_depth=a.tree_max_depth).fit(Xtr, ytr)
             gold_fn = lambda x: tree_gold(clf, x)
             info = {'depth': int(clf.get_depth())}
         info['test_accuracy'] = float((clf.predict(Xte) == yte).mean())
@@ -110,7 +113,9 @@ def main():
         out[algo] = info
         print(a.dataset, algo, {k: round(100 * v, 1) for k, v in info['recall'].items()},
               {k: v for k, v in info.items() if k not in ('recall', 'recall_std')}, flush=True)
-    save(out, f'faithfulness_{a.dataset}.json')
+    out['tree_max_depth'] = a.tree_max_depth
+    suffix = f'_depth{a.tree_max_depth}' if a.tree_max_depth else ''
+    save(out, f'faithfulness_{a.dataset}{suffix}.json')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,49 @@
+{
+  "dataset": "dvd_acl",
+  "num_samples": 15000,
+  "n_test": 400,
+  "l1logreg": {
+    "C": 0.03000000000000004,
+    "n_nonzero_coef": 11,
+    "test_accuracy": 0.65,
+    "parzen_sigma": 1.0,
+    "parzen_sigma_source": "paper",
+    "n_scored": 369,
+    "mean_gold_size": 3.0,
+    "seconds": 71.5,
+    "recall": {
+      "random": 0.1657773045984428,
+      "parzen": 0.5473534219469178,
+      "greedy": 0.5168688432916075,
+      "LIME": 0.9093108788230739
+    },
+    "recall_std": {
+      "random": 0.2769165402598805,
+      "parzen": 0.3572522593222363,
+      "greedy": 0.34525664256437244,
+      "LIME": 0.16788923264187527
+    }
+  },
+  "tree": {
+    "depth": 10,
+    "test_accuracy": 0.6275,
+    "parzen_sigma": 8.0,
+    "parzen_sigma_source": "paper",
+    "n_scored": 278,
+    "mean_gold_size": 1.2374100719424461,
+    "seconds": 63.8,
+    "recall": {
+      "random": 0.17625899280575538,
+      "parzen": 0.9325539568345323,
+      "greedy": 0.5890287769784173,
+      "LIME": 0.9508393285371702
+    },
+    "recall_std": {
+      "random": 0.36932207439220044,
+      "parzen": 0.169556458362025,
+      "greedy": 0.4627323621490494,
+      "LIME": 0.14820163286833551
+    }
+  },
+  "tree_max_depth": 10
+}

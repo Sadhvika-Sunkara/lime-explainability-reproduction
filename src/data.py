@@ -43,6 +43,22 @@ def load_multidomain(domain):
     return _split(read('positive.review'), read('negative.review'))
 
 
+def load_multidomain_acl(domain):
+    """Exactly the authors' input: the pre-processed `processed_acl` release
+    (Blitzer et al., 2007), parsed with the authors' own get_words()
+    (load_datasets.py): features matched by the regex \\w*?:\\d, bigrams
+    (tokens containing '_') removed, each unigram repeated by its count.
+    Expects data/processed_acl/<domain>/{positive,negative}.review."""
+    d = os.path.join(ROOT, 'processed_acl', domain)
+
+    def get_words(line):
+        z = [tuple(x.split(':')) for x in re.findall(r'\w*?:\d', line)]
+        return ' '.join(' '.join([w] * int(c)) for w, c in z if '_' not in w)
+    neg = [get_words(l) for l in open(os.path.join(d, 'negative.review'), encoding='latin-1')]
+    pos = [get_words(l) for l in open(os.path.join(d, 'positive.review'), encoding='latin-1')]
+    return _split(pos, neg)
+
+
 def load_imdb(n_per_class=1000, seed=1):
     """IMDB Large Movie Review Dataset (Maas et al., 2011), 50k-review CSV.
     A balanced random sample of n_per_class reviews per label is drawn so the
@@ -59,6 +75,8 @@ def load_imdb(n_per_class=1000, seed=1):
 def load_text(name):
     return {'books': lambda: load_multidomain('books'),
             'dvd': lambda: load_multidomain('dvd'),
+            'books_acl': lambda: load_multidomain_acl('books'),
+            'dvd_acl': lambda: load_multidomain_acl('dvd'),
             'imdb': load_imdb}[name]()
 
 

@@ -8,7 +8,7 @@ This repository reproduces the two simulated-user experiments of
 
 | | Original data (replication) | New data |
 |---|---|---|
-| **§5.2 Faithfulness** — recall of a model's true features | Books, DVDs | IMDB (new text domain), UCI Heart Disease (tabular) |
+| **§5.2 Faithfulness** — recall of a model's true features | Books, DVDs (authors' `processed_acl` input; raw text as robustness check) | IMDB (new text domain), UCI Heart Disease (tabular) |
 | **§5.3 Trust** — F1 of deciding whether to trust a prediction | Books, DVDs × LR / NN / RF / SVM | IMDB, Heart × LR / NN / RF / SVM |
 | **Human trust judgements** | — | 60 Heart Disease predictions + LIME explanations rated by 3 people and an LLM judge |
 
@@ -28,7 +28,7 @@ bash run_all.sh                                        # every experiment + tabl
 To run a single setting (each takes 1–15 minutes):
 
 ```bash
-python src/run_faithfulness.py --dataset books               # books | dvd | imdb
+python src/run_faithfulness.py --dataset books_acl           # books_acl | dvd_acl (authors' input) | books | dvd (raw text) | imdb
 python src/run_trust.py --dataset dvd --algorithm svm        # logreg | neighbors | random_forest | svm
 python src/run_heart.py --experiment faithfulness
 python src/run_heart.py --experiment trust --algorithm random_forest
@@ -70,14 +70,14 @@ re-implements the same algorithms with the same hyperparameters (N = 15,000 samp
 ρ = 25 on 100 × cosine distance, K-LASSO via the LARS path, the authors' Parzen bandwidths), and the
 experiment scripts keep the original classifier settings, seeds, simulated-user rules and metric.
 The deviations are listed in §4 of the report:
-raw-text tokenisation instead of the no-longer-linked `processed_acl` files, a bag-of-words RF
+a bag-of-words RF
 (as in the released code), and vectorised and closed-form speed-ups that do not change any computation.
 
 ## Data
 
 | Dataset | Source | Licence | In repo? |
 |---|---|---|---|
-| Multi-Domain Sentiment (Books, DVDs) | Blitzer et al. 2007, [JHU](https://www.cs.jhu.edu/~mdredze/datasets/sentiment/) | research use | no — `scripts/get_data.py` |
+| Multi-Domain Sentiment (Books, DVDs): `processed_acl` (replication) and raw reviews (robustness) | Blitzer et al. 2007, [JHU](https://www.cs.jhu.edu/~mdredze/datasets/sentiment/) | research use | no — `scripts/get_data.py` |
 | IMDB 50k reviews | Maas et al. 2011, [Stanford](https://ai.stanford.edu/~amaas/data/sentiment/) | research use | no — `scripts/get_data.py` |
 | Heart Disease (Cleveland) | Janosi et al. 1988, [UCI](https://archive.ics.uci.edu/dataset/45/heart+disease) | CC BY 4.0 | yes, `data/raw/` |
 | Explanation-trust annotations (new) | this project | CC BY 4.0 | yes, `annotation/` |

@@ -3,6 +3,7 @@ __pycache__/
 # large / third-party-licensed raw data: fetch with scripts/get_data.py
 data/sorted_data_acl/
 data/imdb/
+data/processed_acl/
 logs/
 report/*.aux
 report/*.log
@@ -11,3 +12,4 @@ report/*.blg
 report/*.out
 report/*.fdb_latexmk
 report/*.fls
+*.tar.gz

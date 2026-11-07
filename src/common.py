@@ -15,15 +15,19 @@ RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'result
 # cross-validated predictions (find_sigma in parzen_windows.py).
 PAPER_SIGMAS_FIDELITY = {'books': {'tree': 2.0, 'l1logreg': 2.0},
                          'dvd': {'tree': 8.0, 'l1logreg': 1.0}}
+PAPER_SIGMAS_FIDELITY['books_acl'] = PAPER_SIGMAS_FIDELITY['books']
+PAPER_SIGMAS_FIDELITY['dvd_acl'] = PAPER_SIGMAS_FIDELITY['dvd']
 PAPER_SIGMAS_TRUST = {'books': {'neighbors': 0.5, 'svm': 7.0, 'logreg': 1.0, 'random_forest': 1.0},
                       'dvd': {'neighbors': 0.5, 'svm': 0.75, 'logreg': 0.75, 'random_forest': 0.5}}
+PAPER_SIGMAS_TRUST['books_acl'] = PAPER_SIGMAS_TRUST['books']
+PAPER_SIGMAS_TRUST['dvd_acl'] = PAPER_SIGMAS_TRUST['dvd']
 SIGMA_GRID = [0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 10.0]
 
 
-def vectorize(train_docs, test_docs):
-    # original: CountVectorizer(lowercase=False, binary=True) on pre-tokenised,
-    # already-lowercased text; here raw text, so lowercase=True.
-    v = CountVectorizer(lowercase=True, binary=True)
+def vectorize(train_docs, test_docs, lowercase=True):
+    # original: CountVectorizer(lowercase=False, binary=True) on the pre-tokenised
+    # processed_acl text (used for the *_acl datasets); raw text needs lowercase=True.
+    v = CountVectorizer(lowercase=lowercase, binary=True)
     Xtr = v.fit_transform(train_docs).astype(float)
     Xte = v.transform(test_docs).astype(float)
     return v, Xtr, Xte
